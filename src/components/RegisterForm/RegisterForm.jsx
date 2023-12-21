@@ -51,6 +51,7 @@ const RegisterForm = () => {
                 type="text"
                 name="userName"
                 value={values.userName}
+                placeholder="Ilona Ratushniak"
               />
             </InputsBox>
 
@@ -61,6 +62,7 @@ const RegisterForm = () => {
                 type="email"
                 name="email"
                 value={values.email}
+                placeholder="Your@email.com"
               />
             </InputsBox>
 
@@ -71,6 +73,7 @@ const RegisterForm = () => {
                 type="password"
                 name="password"
                 value={values.password}
+                placeholder="Yourpasswordhere"
               />
             </InputsBox>
 

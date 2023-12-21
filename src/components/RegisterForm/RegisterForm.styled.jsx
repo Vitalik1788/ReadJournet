@@ -33,6 +33,10 @@ export const FormBox = styled.div`
 export const FormTitle = styled.h1`
   margin-top: 40px;
   margin-bottom: 20px;
+  font-family: 'Gilroy';
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
   color: #f9f9f9;
 `;
 
@@ -42,45 +46,66 @@ export const TitleSpan = styled.span`
 
 export const InputsBox = styled.div`
   position: relative;
-`
+`;
 
 export const Label = styled.label`
   position: absolute;
-  top: 17px;
+  top: 14px;
   left: 14px;
-  color: #686868;
+  font-family: 'Gilroy';
   font-size: 12px;
-
+  font-weight: 500;
+  line-height: 1.33;
+  letter-spacing: -0.02em;
+  color: #686868;
 `;
 
 export const StyledField = styled(field)`
   width: 100%;
   margin-bottom: 8px;
-  padding: 14px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  padding-left: 75px;
   background-color: #262626;
   border: none;
   border-radius: 12px;
+  font-family: 'Gilroy';
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.33;
+  letter-spacing: -0.02em;
+  color: #f9f9f9;
+
+  ::placeholder {
+    color: #f9f9f9;
+  }
 `;
 
 export const BtnBox = styled.div`
   display: flex;
   align-items: baseline;
   gap: 14px;
-
-`
+`;
 
 export const Btn = styled.button`
-  background-color: #f9f9f9;
   margin-top: 12px;
   padding: 12px 29px 12px 29px;
+  background-color: #f9f9f9;
   border: none;
   border-radius: 30px;
-  color: #1f1f1f;
+  font-family: 'Gilroy';
+  font-weight: 700;
+  line-height: 1.29;
   font-size: 14px;
+  color: #1f1f1f;
 `;
 
 export const LoginLink = styled.p`
-font-size: 12px;
+  font-family: 'Gilroy';
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.17;
+  letter-spacing: -0.02em;
   color: #686868;
   text-decoration: underline;
 `;
