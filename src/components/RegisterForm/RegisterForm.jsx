@@ -1,92 +1,254 @@
 import {
   Btn,
   BtnBox,
+  DesktopPhone,
+  Error,
   FormBox,
   FormTitle,
+  IconInput,
   InputsBox,
   Label,
   LoginLink,
+  LogoBox,
+  LogoText,
+  MainBox,
+  MobilePhone,
+  PhoneBox,
+  SVGWrapper,
   StyledField,
   TitleSpan,
 } from './RegisterForm.styled';
+import sprite from '../../assets/images/sprite.svg';
 import logo from '../../assets/images/iconlogo.png';
+import phone1x from '../../assets/images/auth-phone.jpg';
+import phoneDesktop from '../../assets/images/phone-desktop.jpg';
 import { Form, Formik } from 'formik';
-import * as yup from 'yup';
+import * as Yup from 'yup';
+import { useState } from 'react';
 
-const validationSchema = yup.object({
-  userName: yup.string('Enter your name').trim().required('Name is required'),
-  email: yup
-    .string('Enter your email')
+let validationSchema = Yup.object({
+  userName: Yup.string('Enter your name')
+    .min(2, 'Name should be of minimum 2 characters length')
+    .trim()
+    .required('Name is required'),
+  email: Yup.string('Enter your email')
     .trim()
     .matches(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/, 'Enter valid email')
     .required('Email is required'),
-  password: yup
-    .string('')
+  password: Yup.string('')
     .trim()
     .min(7, 'Password should be of minimum 7 characters length')
     .required('Password is required'),
 });
 
 const RegisterForm = () => {
+  const [passwordIsOpen, setPasswordIsOpen] = useState(false);
+
+  function togglePassword() {
+    if (passwordIsOpen) {
+      setPasswordIsOpen(false);
+      return;
+    }
+    setPasswordIsOpen(true);
+  }
+
+  function handleSubmit(values) {
+    console.log(values);
+  }
+
   return (
-    <FormBox>
-      <img src={logo} alt="logo" />
-      <FormTitle>
-        Expand your mind, reading <TitleSpan>a book</TitleSpan>
-      </FormTitle>
-      <Formik
-        initialValues={{
-          userName: '',
-          email: '',
-          password: '',
-        }}
-        validationSchema={validationSchema}
-      >
-        {({ values, isSubmitting }) => (
-          <Form>
-            <InputsBox>
-              <Label htmlFor="userName">Name:</Label>
-              <StyledField
-                id="userName"
-                type="text"
-                name="userName"
-                value={values.userName}
-                placeholder="Ilona Ratushniak"
-              />
-            </InputsBox>
+    <MainBox>
+      <FormBox>
+        <LogoBox>
+          <img src={logo} alt="logo" />
+          <LogoText>READ JOURNEY</LogoText>
+        </LogoBox>
+        <FormTitle>
+          Expand your mind, reading <TitleSpan>a book</TitleSpan>
+        </FormTitle>
+        <Formik
+          initialValues={{
+            userName: '',
+            email: '',
+            password: '',
+          }}
+          validationSchema={validationSchema}
+          validateOnBlur={false}
+          validateOnChange={false}
+          onSubmit={(values) => handleSubmit(values)}
+        >
+          {({ values, isSubmitting, errors, isValid }) => (
+            <Form>
+              <InputsBox>
+                <Label htmlFor="userName">Name:</Label>
+                {!isValid ? (
+                  <>
+                    <StyledField
+                      style={
+                        errors.userName
+                          ? { border: '1px solid #E90516' }
+                          : { border: '1px solid #30B94D' }
+                      }
+                      id="userName"
+                      type="text"
+                      name="userName"
+                      value={values.userName}
+                      placeholder="Ilona Ratushniak"
+                    />
+                    {errors.userName ? (
+                      <>
+                        <Error style={{ color: '#E90516' }}>
+                          {errors.userName}
+                        </Error>
+                        <IconInput>
+                          <use href={`${sprite}#icon-wrong`}></use>
+                        </IconInput>
+                      </>
+                    ) : (
+                      <>
+                        <Error style={{ color: '#30B94D' }}>
+                          Name is correct
+                        </Error>
+                        <IconInput>
+                          <use href={`${sprite}#icon-correct`}></use>
+                        </IconInput>
+                      </>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    <StyledField
+                      id="userName"
+                      type="text"
+                      name="userName"
+                      value={values.userName}
+                      placeholder="Ilona Ratushniak"
+                    />
+                  </>
+                )}
+              </InputsBox>
 
-            <InputsBox>
-              <Label htmlFor="email">Mail:</Label>
-              <StyledField
-                id="email"
-                type="email"
-                name="email"
-                value={values.email}
-                placeholder="Your@email.com"
-              />
-            </InputsBox>
+              <InputsBox>
+                <Label htmlFor="email">Mail:</Label>
+                {!isValid ? (
+                  <>
+                    <StyledField
+                      style={
+                        errors.email
+                          ? { border: '1px solid #E90516' }
+                          : { border: '1px solid #30B94D' }
+                      }
+                      id="email"
+                      type="email"
+                      name="email"
+                      value={values.email}
+                      placeholder="Ilona Ratushniak"
+                    />
+                    {errors.email ? (
+                      <>
+                        <Error style={{ color: '#E90516' }}>
+                          {errors.email}
+                        </Error>
+                        <IconInput>
+                          <use href={`${sprite}#icon-wrong`}></use>
+                        </IconInput>
+                      </>
+                    ) : (
+                      <>
+                        <Error style={{ color: '#30B94D' }}>
+                          Email is correct
+                        </Error>
+                        <IconInput>
+                          <use href={`${sprite}#icon-correct`}></use>
+                        </IconInput>
+                      </>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    <StyledField
+                      id="email"
+                      type="email"
+                      name="email"
+                      value={values.email}
+                      placeholder="Ilona Ratushniak"
+                    />
+                  </>
+                )}
+              </InputsBox>
 
-            <InputsBox>
-              <Label htmlFor="password">Password:</Label>
-              <StyledField
-                id="password"
-                type="password"
-                name="password"
-                value={values.password}
-                placeholder="Yourpasswordhere"
-              />
-            </InputsBox>
+              <InputsBox>
+                <Label htmlFor="password">Password:</Label>
+                {!isValid ? (
+                  <>
+                    <StyledField
+                      style={
+                        errors.password
+                          ? { border: '1px solid #E90516' }
+                          : { border: '1px solid #30B94D' }
+                      }
+                      id="password"
+                      type="password"
+                      name="password"
+                      value={values.password}
+                      placeholder="Ilona Ratushniak"
+                    />
+                    {errors.password ? (
+                      <>
+                        <Error style={{ color: '#E90516' }}>
+                          {errors.password}
+                        </Error>
+                        <IconInput>
+                          <use href={`${sprite}#icon-wrong`}></use>
+                        </IconInput>
+                      </>
+                    ) : (
+                      <>
+                        <Error style={{ color: '#30B94D' }}>
+                          Password is secure
+                        </Error>
+                        <IconInput>
+                          <use href={`${sprite}#icon-correct`}></use>
+                        </IconInput>
+                      </>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    <StyledField
+                      id="password"
+                      type={passwordIsOpen ? 'text' : 'password'}
+                      name="password"
+                      value={values.password}
+                      placeholder="Ilona Ratushniak"
+                    />
+                    <SVGWrapper onClick={() => togglePassword()}>
+                      {passwordIsOpen ? (
+                        <use href={`${sprite}#icon-eyeClose`} />
+                      ) : (
+                        <use href={`${sprite}#icon-eyeOpen`} />
+                      )}
+                    </SVGWrapper>
+                  </>
+                )}
+              </InputsBox>
 
-            <BtnBox>
-              <Btn type="submit" disabled={isSubmitting}>
-                Registration
-              </Btn>
-              <LoginLink>Already have an account?</LoginLink>
-            </BtnBox>
-          </Form>
-        )}
-      </Formik>
-    </FormBox>
+              <BtnBox>
+                <Btn type="submit" disabled={isSubmitting}>
+                  Registration
+                </Btn>
+                <LoginLink>Already have an account?</LoginLink>
+              </BtnBox>
+            </Form>
+          )}
+        </Formik>
+      </FormBox>
+
+      <PhoneBox>
+        <MobilePhone src={phone1x} alt="photo iphone 15" />
+        <DesktopPhone src={phoneDesktop} alt="photo iphone 15" />
+      </PhoneBox>
+    </MainBox>
   );
 };
 
