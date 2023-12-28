@@ -154,7 +154,7 @@ export const StyledField = styled(field)`
 `;
 
 export const Error = styled.p`
-margin-bottom: 8px;
+  margin-bottom: 8px;
   padding-left: 14px;
   font-family: 'Gilroy';
   font-size: 10px;

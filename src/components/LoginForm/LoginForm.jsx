@@ -17,7 +17,7 @@ import {
   SVGWrapper,
   StyledField,
   TitleSpan,
-} from './RegisterForm.styled';
+} from './LoginForm.styled';
 import sprite from '../../assets/images/sprite.svg';
 import logo from '../../assets/images/iconlogo.png';
 import phone1x from '../../assets/images/auth-phone.jpg';
@@ -27,10 +27,6 @@ import * as Yup from 'yup';
 import { useState } from 'react';
 
 let validationSchema = Yup.object({
-  userName: Yup.string('Enter your name')
-    .min(2, 'Name should be of minimum 2 characters length')
-    .trim()
-    .required('Name is required'),
   email: Yup.string('Enter your email')
     .trim()
     .matches(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/, 'Enter valid email')
@@ -41,7 +37,7 @@ let validationSchema = Yup.object({
     .required('Password is required'),
 });
 
-const RegisterForm = () => {
+const LoginForm = () => {
   const [passwordIsOpen, setPasswordIsOpen] = useState(false);
 
   function togglePassword() {
@@ -68,7 +64,6 @@ const RegisterForm = () => {
         </FormTitle>
         <Formik
           initialValues={{
-            userName: '',
             email: '',
             password: '',
           }}
@@ -79,55 +74,6 @@ const RegisterForm = () => {
         >
           {({ values, isSubmitting, errors, isValid }) => (
             <Form>
-              <InputsBox>
-                <Label htmlFor="userName">Name:</Label>
-                {!isValid ? (
-                  <>
-                    <StyledField
-                      style={
-                        errors.userName
-                          ? { border: '1px solid #E90516' }
-                          : { border: '1px solid #30B94D' }
-                      }
-                      id="userName"
-                      type="text"
-                      name="userName"
-                      value={values.userName}
-                      placeholder="Ilona Ratushniak"
-                    />
-                    {errors.userName ? (
-                      <>
-                        <Error style={{ color: '#E90516' }}>
-                          {errors.userName}
-                        </Error>
-                        <IconInput>
-                          <use href={`${sprite}#icon-wrong`}></use>
-                        </IconInput>
-                      </>
-                    ) : (
-                      <>
-                        <Error style={{ color: '#30B94D' }}>
-                          Name is correct
-                        </Error>
-                        <IconInput>
-                          <use href={`${sprite}#icon-correct`}></use>
-                        </IconInput>
-                      </>
-                    )}
-                  </>
-                ) : (
-                  <>
-                    <StyledField
-                      id="userName"
-                      type="text"
-                      name="userName"
-                      value={values.userName}
-                      placeholder="Ilona Ratushniak"
-                    />
-                  </>
-                )}
-              </InputsBox>
-
               <InputsBox>
                 <Label htmlFor="email">Mail:</Label>
                 {!isValid ? (
@@ -235,9 +181,9 @@ const RegisterForm = () => {
 
               <BtnBox>
                 <Btn type="submit" disabled={isSubmitting}>
-                  Registration
+                  Log In
                 </Btn>
-                <LoginLink to='/login'>Already have an account?</LoginLink>
+                <LoginLink to='/register'>Don’t have an account? </LoginLink>
               </BtnBox>
             </Form>
           )}
@@ -252,4 +198,4 @@ const RegisterForm = () => {
   );
 };
 
-export default RegisterForm;
+export default LoginForm;
