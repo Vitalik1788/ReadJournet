@@ -8,6 +8,7 @@ import LoginForm from './components/LoginForm/LoginForm';
 import PrivateRoute from './PrivateRoute';
 import Layout from './components/Layout/Layout';
 import RecommendedPage from './pages/RecommendedPage';
+import Library from './pages/Library';
 
 
 
@@ -23,7 +24,8 @@ function App() {
           </Route>
           <Route element={<PrivateRoute />}>
             <Route path="/" element={<Layout />} >
-            <Route path="/recommended" element={<RecommendedPage />} />
+              <Route path="/recommended" element={<RecommendedPage />} />
+              <Route path='/library' element={<Library />} />
             </Route>
           </Route>
         </Routes>
