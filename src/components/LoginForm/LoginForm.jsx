@@ -25,6 +25,8 @@ import phoneDesktop from '../../assets/images/phone-desktop.jpg';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { login } from '../../redux/auth/authOperation';
 
 let validationSchema = Yup.object({
   email: Yup.string('Enter your email')
@@ -39,6 +41,7 @@ let validationSchema = Yup.object({
 
 const LoginForm = () => {
   const [passwordIsOpen, setPasswordIsOpen] = useState(false);
+  const dispatch = useDispatch();
 
   function togglePassword() {
     if (passwordIsOpen) {
@@ -49,7 +52,7 @@ const LoginForm = () => {
   }
 
   function handleSubmit(values) {
-    console.log(values);
+    dispatch(login(values));
   }
 
   return (

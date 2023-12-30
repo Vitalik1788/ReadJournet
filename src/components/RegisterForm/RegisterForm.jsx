@@ -25,9 +25,11 @@ import phoneDesktop from '../../assets/images/phone-desktop.jpg';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { register } from '../../redux/auth/authOperation';
 
 let validationSchema = Yup.object({
-  userName: Yup.string('Enter your name')
+  name: Yup.string('Enter your name')
     .min(2, 'Name should be of minimum 2 characters length')
     .trim()
     .required('Name is required'),
@@ -43,6 +45,7 @@ let validationSchema = Yup.object({
 
 const RegisterForm = () => {
   const [passwordIsOpen, setPasswordIsOpen] = useState(false);
+  const dispatch = useDispatch();
 
   function togglePassword() {
     if (passwordIsOpen) {
@@ -53,7 +56,7 @@ const RegisterForm = () => {
   }
 
   function handleSubmit(values) {
-    console.log(values);
+    dispatch(register(values));
   }
 
   return (
@@ -68,7 +71,7 @@ const RegisterForm = () => {
         </FormTitle>
         <Formik
           initialValues={{
-            userName: '',
+            name: '',
             email: '',
             password: '',
           }}
@@ -80,25 +83,25 @@ const RegisterForm = () => {
           {({ values, isSubmitting, errors, isValid }) => (
             <Form>
               <InputsBox>
-                <Label htmlFor="userName">Name:</Label>
+                <Label htmlFor="name">Name:</Label>
                 {!isValid ? (
                   <>
                     <StyledField
                       style={
-                        errors.userName
+                        errors.name
                           ? { border: '1px solid #E90516' }
                           : { border: '1px solid #30B94D' }
                       }
-                      id="userName"
+                      id="name"
                       type="text"
-                      name="userName"
-                      value={values.userName}
+                      name="name"
+                      value={values.name}
                       placeholder="Ilona Ratushniak"
                     />
-                    {errors.userName ? (
+                    {errors.name ? (
                       <>
                         <Error style={{ color: '#E90516' }}>
-                          {errors.userName}
+                          {errors.name}
                         </Error>
                         <IconInput>
                           <use href={`${sprite}#icon-wrong`}></use>
@@ -118,10 +121,10 @@ const RegisterForm = () => {
                 ) : (
                   <>
                     <StyledField
-                      id="userName"
+                      id="name"
                       type="text"
-                      name="userName"
-                      value={values.userName}
+                      name="name"
+                      value={values.name}
                       placeholder="Ilona Ratushniak"
                     />
                   </>

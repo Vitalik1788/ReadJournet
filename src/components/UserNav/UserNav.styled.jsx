@@ -1,9 +1,12 @@
 import styled from '@emotion/styled';
 import { HiOutlineMenuAlt3 } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
+import Modal from 'react-modal';
+
 
 const burgermenu = HiOutlineMenuAlt3;
 const link = Link;
+const modal = Modal;
 
 export const FormBox = styled.div`
   background-color: #1f1f1f;
@@ -160,4 +163,12 @@ export const LogoutBtn = styled.button`
   @media screen and (max-width: 767px) {
     display: none;
   }
+`;
+
+
+export const StyledModal = styled(modal)`
+  height: 100%;
+  width: 200px;
+  margin-left: auto;
+  background-color: #262626;
 `;
