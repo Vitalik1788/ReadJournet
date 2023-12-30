@@ -1,11 +1,32 @@
 import { Form, Formik } from 'formik';
-import { FilterTitle, FiltersBox, FiltersBtn, InputBox, InputField, InputLabel, LibraryLinkBox, LinkText, WorkoutBox, WorkoutItemText, WorkoutList, WorkoutListPoint, WorkoutTitle } from './Filter.styled';
+import {
+  FilterTitle,
+  Box,
+  FiltersBtn,
+  InputBox,
+  InputField,
+  InputLabel,
+  LibraryLinkBox,
+  LinkText,
+  WorkoutBox,
+  WorkoutItemText,
+  WorkoutList,
+  WorkoutListPoint,
+  WorkoutTitle,
+  FilterBox,
+  BooksBox,
+  BooksText,
+} from './Filter.styled';
 import sprite from '../../assets/images/sprite.svg';
+import books from '../../assets/images/books-desktop.jpg';
+import { useNavigate } from 'react-router-dom';
 
 const Filter = () => {
+  const navigate = useNavigate();
+
   return (
-    <FiltersBox>
-      <div>
+    <Box>
+      <FilterBox>
         <FilterTitle>Filters:</FilterTitle>
         <Formik
           initialValues={{
@@ -39,7 +60,7 @@ const Filter = () => {
             </Form>
           )}
         </Formik>
-      </div>
+      </FilterBox>
 
       <WorkoutBox>
         <WorkoutTitle>Start your workout</WorkoutTitle>
@@ -64,13 +85,26 @@ const Filter = () => {
           </WorkoutList>
         </ul>
         <LibraryLinkBox>
-          <LinkText>My library</LinkText>
-          <svg width={24} height={24}>
+          <LinkText to="/library">My library</LinkText>
+          <svg
+            onClick={() => navigate('/library')}
+            width={24}
+            height={24}
+            style={{ cursor: 'pointer' }}
+          >
             <use href={`${sprite}#icon-arrow`}></use>
           </svg>
         </LibraryLinkBox>
       </WorkoutBox>
-    </FiltersBox>
+
+      <BooksBox>
+        <img src={books} alt="books one by one" />
+        <BooksText>
+          "Books are <span style={{ color: '#F9F9F9' }}>windows</span> to the
+          world, and reading is a journey into the unknown."
+        </BooksText>
+      </BooksBox>
+    </Box>
   );
 };
 

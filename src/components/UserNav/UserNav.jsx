@@ -2,6 +2,7 @@ import {
   FormBox,
   LinkItem,
   LinkList,
+  LinkStyled,
   LogoBox,
   LogoText,
   LogoutBtn,
@@ -23,8 +24,12 @@ const UserNav = () => {
           <LogoText>READ JOURNEY</LogoText>
         </LogoBox>
         <LinkList>
-          <LinkItem>Home</LinkItem>
-          <LinkItem>My library</LinkItem>
+          <LinkItem>
+            <LinkStyled to='/recommended'>Home</LinkStyled>
+          </LinkItem>
+          <LinkItem>
+            <LinkStyled to='/library'>My library</LinkStyled>
+          </LinkItem>
         </LinkList>
         <NavList>
           <NavItem>

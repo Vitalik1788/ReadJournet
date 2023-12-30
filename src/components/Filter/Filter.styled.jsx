@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const field = Field;
 const link = Link;
 
-export const FiltersBox = styled.div`
+export const Box = styled.div`
   margin-left: auto;
   margin-right: auto;
   margin-top: 10px;
@@ -26,10 +26,21 @@ export const FiltersBox = styled.div`
     display: flex;
     justify-content: space-between;
     padding: 32px;
+    margin-top: 16px;
   }
 
   @media screen and (min-width: 1280px) {
-    width: 600px;
+    display: block;
+    width: 353px;
+    padding: 20px;
+
+    margin-left: 0;
+  }
+`;
+
+export const FilterBox = styled.div`
+  @media screen and (min-width: 768px) {
+    width: 300px;
   }
 `;
 
@@ -41,6 +52,11 @@ export const FilterTitle = styled.h3`
   line-height: 1.2;
   letter-spacing: -0.02em;
   color: #f9f9f9;
+
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+    line-height: 1.29;
+  }
 `;
 
 export const InputBox = styled.div`
@@ -48,6 +64,10 @@ export const InputBox = styled.div`
   background-color: #262626;
   border-radius: 12px;
   padding: 14px;
+
+  @media screen and (min-width: 768px) {
+    padding: 16px;
+  }
 `;
 
 export const InputLabel = styled.label`
@@ -57,6 +77,11 @@ export const InputLabel = styled.label`
   line-height: 1.33;
   letter-spacing: -0.02em;
   color: #686868;
+
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+    line-height: 1.29;
+  }
 `;
 
 export const InputField = styled(field)`
@@ -73,6 +98,11 @@ export const InputField = styled(field)`
 
   ::placeholder {
     color: #f9f9f9;
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+    line-height: 1.29;
   }
 `;
 
@@ -94,6 +124,11 @@ export const FiltersBtn = styled.button`
     color: #1f1f1f;
     background-color: #f9f9f9;
   }
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+    padding: 12px 28px;
+  }
 `;
 
 export const WorkoutBox = styled.div`
@@ -114,6 +149,11 @@ export const WorkoutTitle = styled.h3`
   line-height: 1;
   letter-spacing: -0.02em;
   color: #f9f9f9;
+
+  @media screen and (min-width: 768px) {
+    font-size: 20px;
+    margin-bottom: 40px;
+  }
 `;
 
 export const WorkoutList = styled.li`
@@ -123,8 +163,7 @@ export const WorkoutList = styled.li`
   :not(:last-child) {
     margin-bottom: 20px;
   }
-
-`
+`;
 
 export const WorkoutListPoint = styled.p`
   display: flex;
@@ -138,6 +177,12 @@ export const WorkoutListPoint = styled.p`
   font-size: 18px;
   font-weight: 700;
   line-height: 1;
+
+  @media screen and (min-width: 768px) {
+    min-width: 44px;
+    height: 44px;
+    font-size: 20px;
+  }
 `;
 
 export const WorkoutItemText = styled.p`
@@ -147,6 +192,10 @@ export const WorkoutItemText = styled.p`
   line-height: 1.29;
   letter-spacing: -0.02em;
   color: #f9f9f9;
+
+  @media screen and (min-width: 768px) {
+    padding-right: 20px;
+  }
 `;
 
 export const LibraryLinkBox = styled.div`
@@ -154,7 +203,7 @@ export const LibraryLinkBox = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-top: 20px;
-`
+`;
 export const LinkText = styled(link)`
   font-family: 'Gilroy';
   font-size: 14px;
@@ -165,3 +214,24 @@ export const LinkText = styled(link)`
   text-decoration: underline;
 `;
 
+export const BooksBox = styled.div`
+  @media screen and (max-width: 1279px) {
+    display: none;
+  }
+  display: flex;
+  gap: 14px;
+  width: 313px;
+  background-color: #262626;
+  margin-top: 20px;
+  padding: 15px 20px;
+  border-radius: 12px;
+`;
+
+export const BooksText = styled.p`
+  font-family: 'Gilroy';
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.29;
+  letter-spacing: -0.02em;
+  color: #686868;
+`;

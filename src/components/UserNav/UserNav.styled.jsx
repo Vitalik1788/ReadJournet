@@ -1,7 +1,9 @@
 import styled from '@emotion/styled';
 import { HiOutlineMenuAlt3 } from 'react-icons/hi';
+import { Link } from 'react-router-dom';
 
 const burgermenu = HiOutlineMenuAlt3;
+const link = Link;
 
 export const FormBox = styled.div`
   background-color: #1f1f1f;
@@ -27,7 +29,7 @@ export const FormBox = styled.div`
   }
 
   @media screen and (min-width: 1280px) {
-    width: 1216px;
+    width: 100%;
   }
 `;
 
@@ -35,7 +37,7 @@ export const LogoBox = styled.div`
   display: flex;
   align-items: center;
   gap: 4px;
-`
+`;
 
 export const LogoText = styled.p`
   font-family: 'Gilroy';
@@ -66,8 +68,12 @@ export const LinkList = styled.ul`
   @media screen and (max-width: 767px) {
     display: none;
   }
-`
+`;
 export const LinkItem = styled.li`
+  
+`;
+
+export const LinkStyled = styled(link)`
   font-family: 'Gilroy';
   font-size: 16px;
   font-weight: 500;
@@ -75,8 +81,7 @@ export const LinkItem = styled.li`
   letter-spacing: -0.02em;
   color: #f9f9f9;
   cursor: pointer;
-`;
-
+`; 
 
 export const NavList = styled.ul`
   list-style: none;
