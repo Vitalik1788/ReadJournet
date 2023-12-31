@@ -1,4 +1,8 @@
 import {
+  BurgerMenuBtn,
+  BurgerMenuItem,
+  BurgerMenuLink,
+  CloseCross,
   FormBox,
   LinkItem,
   LinkList,
@@ -6,6 +10,7 @@ import {
   LogoBox,
   LogoText,
   LogoutBtn,
+  MenuBox,
   MobileMenu,
   NavBox,
   NavItem,
@@ -19,7 +24,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/auth/authOperation';
 import { selectUser } from '../../redux/auth/authSelector';
 import { useState } from 'react';
-
 
 const UserNav = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -36,7 +40,7 @@ const UserNav = () => {
     setModalIsOpen(false);
     document.body.style.overflowY = 'unset';
   }
-  
+
   return (
     <>
       <FormBox>
@@ -79,7 +83,18 @@ const UserNav = () => {
           },
         }}
       >
-        <h2>This is modal</h2>
+        <CloseCross onClick={() => closeModal()} />
+        <MenuBox>
+          <ul>
+            <BurgerMenuItem>
+              <BurgerMenuLink to="/recommended">Home</BurgerMenuLink>
+            </BurgerMenuItem>
+            <BurgerMenuItem>
+              <BurgerMenuLink to="/library">My library</BurgerMenuLink>
+            </BurgerMenuItem>
+          </ul>
+          <BurgerMenuBtn onClick={()=> dispatch(logout())}>Log out</BurgerMenuBtn>
+        </MenuBox>
       </StyledModal>
     </>
   );

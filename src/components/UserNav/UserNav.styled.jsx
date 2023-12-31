@@ -1,11 +1,12 @@
 import styled from '@emotion/styled';
 import { HiOutlineMenuAlt3 } from 'react-icons/hi';
-import { Link } from 'react-router-dom';
+import { IoMdClose } from 'react-icons/io';
+import { NavLink } from 'react-router-dom';
 import Modal from 'react-modal';
 
-
 const burgermenu = HiOutlineMenuAlt3;
-const link = Link;
+const closeCross = IoMdClose;
+const link = NavLink;
 const modal = Modal;
 
 export const FormBox = styled.div`
@@ -72,11 +73,10 @@ export const LinkList = styled.ul`
     display: none;
   }
 `;
-export const LinkItem = styled.li`
-  
-`;
+export const LinkItem = styled.li``;
 
 export const LinkStyled = styled(link)`
+  padding-bottom: 8px;
   font-family: 'Gilroy';
   font-size: 16px;
   font-weight: 500;
@@ -84,7 +84,11 @@ export const LinkStyled = styled(link)`
   letter-spacing: -0.02em;
   color: #f9f9f9;
   cursor: pointer;
-`; 
+
+  &.active {
+    border-bottom: 3px solid #4f92f7;
+  }
+`;
 
 export const NavList = styled.ul`
   list-style: none;
@@ -165,10 +169,69 @@ export const LogoutBtn = styled.button`
   }
 `;
 
-
 export const StyledModal = styled(modal)`
+  position: relative;
   height: 100%;
   width: 200px;
   margin-left: auto;
   background-color: #262626;
+  outline: none;
+`;
+
+export const CloseCross = styled(closeCross)`
+  position: absolute;
+  top: 34px;
+  right: 40px;
+  width: 28px;
+  height: 28px;
+  color: #f9f9f9;
+`;
+
+export const MenuBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding-bottom: 40px;
+  padding-top: 200px;
+  
+`;
+
+export const BurgerMenuItem = styled.li`
+  :not(:last-child) {
+    margin-bottom: 20px;
+  }
+`;
+
+export const BurgerMenuLink = styled(link)`
+  padding-bottom: 4px;
+  font-family: 'Gilroy';
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.29;
+  letter-spacing: -0.02em;
+  color: #686868;
+
+  &.active {
+    color: #f9f9f9;
+    border-bottom: 3px solid #4f92f7;
+  }
+`;
+
+export const BurgerMenuBtn = styled.button`
+  font-family: 'Gilroy';
+  font-size: 14px;
+  font-weight: 700;
+  padding: 10px 20px;
+  color: #f9f9f9;
+  background-color: #262626;
+  border: 1px solid rgba(249, 249, 249, 0.2);
+  border-radius: 30px;
+
+  :hover,
+  :focus {
+    color: #1f1f1f;
+    background-color: #f9f9f9;
+  }
 `;
