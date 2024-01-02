@@ -12,10 +12,10 @@ import Library from './pages/Library';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsRefreshing } from './redux/auth/authSelector';
 import { userRefresh } from './redux/auth/authOperation';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-
-
-function App() { 
+function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
 
@@ -39,9 +39,10 @@ function App() {
               </Route>
             </Route>
           </Routes>
+          <ToastContainer />
         </Suspense>
       </Container>
     )
-  )    
+  );
 }
 export default App;
