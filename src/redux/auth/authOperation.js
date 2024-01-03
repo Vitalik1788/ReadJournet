@@ -20,7 +20,7 @@ export const register = createAsyncThunk(
       setAuthHeader(response.data.token);
       return response.data;
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(error.response.data.message, {theme: "dark"});
       return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
@@ -34,7 +34,7 @@ export const login = createAsyncThunk(
       setAuthHeader(response.data.token);
       return response.data;
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(error.response.data.message, { theme: 'dark' });
       return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
@@ -45,7 +45,7 @@ export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
     await axios.post('/users/signout');
     clearAuthHeader();
   } catch (error) {
-    toast.error(error.response.data.message);
+    toast.error(error.response.data.message, { theme: 'dark' });
     return thunkAPI.rejectWithValue(error.response.data.message);
   }
 });
@@ -62,7 +62,7 @@ export const userRefresh = createAsyncThunk(
       const response = await axios.get('/users/current');
       return response.data;
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(error.response.data.message, { theme: 'dark' });
       return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
