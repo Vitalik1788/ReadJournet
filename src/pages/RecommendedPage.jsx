@@ -1,14 +1,15 @@
 import Filter from "../components/Filter/Filter";
 import RecommendedBooks from "../components/RecommendedBooks/RecommendedBooks";
+import { PageBox } from "./RecommendedPage.styled";
 
 
 const RecommendedPage = () => {
 
   return (
-    <div>
+    <PageBox>
       <Filter />
       <RecommendedBooks />
-    </div>)
+    </PageBox>)
 }
 
 export default RecommendedPage;
