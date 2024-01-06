@@ -2,16 +2,25 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { toast } from "react-toastify";
 
+
 axios.defaults.baseURL = 'https://readjourney.b.goit.study/api';
+
 
 
 export const getRecommendBooks = createAsyncThunk(
   'books/getRecommendBooks',
-  async ( credentials, thunkAPI) => {
+  async (data, thunkAPI) => {
     try {
-      const response = await axios.get(`/books/recommend?page=${credentials.page}&limit=${credentials.pageLimit}`);
-      return response.data.results;
-      
+      if (data.windowsize < 768) {
+        const response = await axios.get(`/books/recommend?page=${data.page}&limit=2`);
+        return response.data;
+      } else if (data.windowsize >= 768 && data.windowsize < 1280) {
+        const response = await axios.get(`/books/recommend?page=${data.page}&limit=8`);
+        return response.data;
+      } else if (data.windowsize >= 1280) {
+        const response = await axios.get(`/books/recommend?page=${data.page}&limit=10`);
+        return response.data;
+      }
     } catch (error) {
       toast.error(error.response.data.message);
       return thunkAPI.rejectWithValue(error.response.data.message);

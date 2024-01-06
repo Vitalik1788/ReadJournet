@@ -19,10 +19,12 @@ export const BooksBox = styled.div`
 
   @media screen and (min-width: 768px) {
     width: 704px;
+    margin-top: 16px;
+    padding: 40px 40px;
   }
 
   @media screen and (min-width: 1280px) {
-    width: 847px;
+    width: 100%;
   }
 `;
 
@@ -41,26 +43,42 @@ export const RecTitle = styled.h2`
   color: #f9f9f9;
 `;
 
-export const BtnBox = styled.li`
+export const BtnBox = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 32px;
   height: 32px;
   border-radius: 50%;
+  background-color: inherit;
   border: 1px solid rgba(249, 249, 249, 0.2);
+  cursor: pointer;
+
+  @media screen and (min-width: 768px) {
+    width: 40px;
+    height: 40px;
+  }
 `;
 
 export const LeftArrow = styled(FiChevronLeft)`
   width: 16px;
   height: 16px;
   color: #f9f9f9;
+
+  @media screen and (min-width: 768px) {
+    width: 20px;
+    height: 20px;
+  }
 `;
 
 export const RightArrow = styled(FiChevronRight)`
   width: 16px;
   height: 16px;
   color: #f9f9f9;
+  @media screen and (min-width: 768px) {
+    width: 20px;
+    height: 20px;
+  }
 `;
 
 export const CardList = styled.ul`
@@ -102,6 +120,10 @@ export const CardImg = styled.img`
   width: 100%;
   height: 208px;
   border-radius: 8px;
+
+  @media screen and (min-width: 1280px) {
+    height: 280px;
+  }
 `
 
 export const CardTitle = styled.h2`
