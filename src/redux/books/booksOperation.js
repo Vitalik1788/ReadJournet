@@ -26,3 +26,16 @@ export const getRecommendBooks = createAsyncThunk(
   }
 );
 
+export const getLibraryRecommendBook = createAsyncThunk(
+  'books/getLibraryRecommendBook',
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get('/books/recommend?page=1&limit=3');
+      return response.data;
+    } catch (error) {
+      toast.error(error.response.data.message);
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
+  }
+);
+

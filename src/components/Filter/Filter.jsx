@@ -100,8 +100,8 @@ const Filter = () => {
       <BooksBox>
         <img src={books} alt="books one by one" />
         <BooksText>
-          "Books are <span style={{ color: '#F9F9F9' }}>windows</span> to the
-          world, and reading is a journey into the unknown."
+          &quot;Books are <span style={{ color: '#F9F9F9' }}>windows</span> to
+          the world, and reading is a journey into the unknown.&quot;
         </BooksText>
       </BooksBox>
     </Box>

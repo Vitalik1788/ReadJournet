@@ -1,8 +1,12 @@
+import LibraryDashboard from "../components/LibraryDashboard/LibraryDashboard";
 
 
 const Library = () => {
 
-  return <div></div>
+  return (
+    <div>
+      <LibraryDashboard />
+    </div>)
 
 }
 
