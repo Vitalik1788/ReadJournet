@@ -15,13 +15,23 @@ import {
   LinkHome,
   RecommendedBox,
   RecommendedTitle,
+  SVGArrow,
 } from './LibraryDashboard.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import * as Yup from 'yup';
 import { getLibraryRecommendBook } from '../../redux/books/booksOperation';
 import { selectLibraryRecommend } from '../../redux/books/booksSelectors';
-import sprite from "../../assets/images/sprite.svg";
+import sprite from '../../assets/images/sprite.svg';
 import { useNavigate } from 'react-router-dom';
+
+let validationSchema = Yup.object({
+  bookTitle: Yup.string('Enter book title')
+    .trim()
+    .required('Book title is required'),
+  author: Yup.string('Enter book author').trim().required('Author is required'),
+  pages: Yup.number('Enter the number of pages in the book').required('Password is required'),
+});
 
 const LibraryDashboard = () => {
   const dispatch = useDispatch();
@@ -42,6 +52,7 @@ const LibraryDashboard = () => {
             author: '',
             pages: '',
           }}
+          validationSchema={validationSchema}
         >
           {({ values }) => (
             <Form>
@@ -52,7 +63,7 @@ const LibraryDashboard = () => {
                   type="text"
                   name="bookTitle"
                   value={values.bookTitle}
-                  placeholder="I See You Are Interested In The Dark"
+                  placeholder="Enter text"
                 />
               </InputBox>
               <InputBox>
@@ -62,7 +73,7 @@ const LibraryDashboard = () => {
                   type="text"
                   name="author"
                   value={values.author}
-                  placeholder="Hilarion Pavlyuk"
+                  placeholder="Enter text"
                 />
               </InputBox>
               <InputBox>
@@ -72,7 +83,7 @@ const LibraryDashboard = () => {
                   type="text"
                   name="pages"
                   value={values.pages}
-                  placeholder="664"
+                  placeholder="0"
                 />
               </InputBox>
               <FiltersBtn type="submit">Add book</FiltersBtn>
@@ -95,16 +106,17 @@ const LibraryDashboard = () => {
               );
             })}
         </CardList>
-        <div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+        >
           <LinkHome to="/recommended">Home</LinkHome>
-          <svg
-            onClick={() => navigate('/recommended')}
-            width={20}
-            height={20}
-            style={{ cursor: 'pointer' }}
-          >
+          <SVGArrow onClick={() => navigate('/recommended')}>
             <use href={`${sprite}#icon-arrow`}></use>
-          </svg>
+          </SVGArrow>
         </div>
       </RecommendedBox>
     </Box>

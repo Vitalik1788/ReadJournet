@@ -1,6 +1,6 @@
-import styled from "@emotion/styled";
-import { Field } from "formik";
-import { NavLink } from "react-router-dom";
+import styled from '@emotion/styled';
+import { Field } from 'formik';
+import { NavLink } from 'react-router-dom';
 
 export const Box = styled.div`
   margin-left: auto;
@@ -57,6 +57,7 @@ export const FilterTitle = styled.h3`
 `;
 
 export const InputBox = styled.div`
+  display: flex;
   margin-top: 8px;
   background-color: #262626;
   border-radius: 12px;
@@ -68,6 +69,8 @@ export const InputBox = styled.div`
 `;
 
 export const InputLabel = styled.label`
+  width: fit-content;
+  white-space: nowrap;
   font-family: 'Gilroy';
   font-size: 12px;
   font-weight: 500;
@@ -129,9 +132,16 @@ export const FiltersBtn = styled.button`
 `;
 
 export const RecommendedBox = styled.div`
+  width: 100%;
   padding: 20px;
   background-color: #262626;
-  border-radius: 12px;  
+  border-radius: 12px;
+
+  @media screen and (min-width: 768px) {
+    width: 313px;
+    height: fit-content;
+    padding: 26px 20px;
+  }
 `;
 
 export const RecommendedTitle = styled.h2`
@@ -142,13 +152,22 @@ export const RecommendedTitle = styled.h2`
   line-height: 1;
   letter-spacing: -0.02em;
   color: #e3e3e3;
+
+  @media screen and (min-width: 768px) {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
 `;
 
 export const CardList = styled.ul`
   display: flex;
   margin-top: -20px;
   margin-left: -20px;
-  margin-bottom: 11px;  
+  margin-bottom: 11px;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 14px;
+  }
 `;
 
 export const CardItem = styled.li`
@@ -196,4 +215,20 @@ export const LinkHome = styled(NavLink)`
   line-height: 1.2;
   letter-spacing: -0.02em;
   color: #686868;
+  border-bottom: 1px solid #686868;
+
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+  }
+`;
+
+export const SVGArrow = styled.svg`
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+
+  @media screen and (min-width: 768px) {
+    width: 24px;
+    height: 24px;
+  }
 `;

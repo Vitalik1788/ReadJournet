@@ -60,6 +60,7 @@ export const FilterTitle = styled.h3`
 `;
 
 export const InputBox = styled.div`
+  display: flex;
   margin-top: 8px;
   background-color: #262626;
   border-radius: 12px;
@@ -71,6 +72,8 @@ export const InputBox = styled.div`
 `;
 
 export const InputLabel = styled.label`
+  width: fit-content;
+  white-space: nowrap;
   font-family: 'Gilroy';
   font-size: 12px;
   font-weight: 500;
