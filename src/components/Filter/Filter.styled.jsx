@@ -61,6 +61,7 @@ export const FilterTitle = styled.h3`
 
 export const InputBox = styled.div`
   display: flex;
+  align-items: center;
   margin-top: 8px;
   background-color: #262626;
   border-radius: 12px;

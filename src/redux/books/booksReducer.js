@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getLibraryRecommendBook, getRecommendBooks } from "./booksOperation";
+import { getLibraryRecommendBook, getRecommendBooks, getUserBooks } from "./booksOperation";
 
 
 const BooksSlice = createSlice({
@@ -8,6 +8,7 @@ const BooksSlice = createSlice({
     books: null,
     totalPages: null,
     libraryRecommend: null,
+    userBooks: null,
   },
   extraReducers: builder => builder
     .addCase(getRecommendBooks.fulfilled, (state, action) => {
@@ -16,6 +17,9 @@ const BooksSlice = createSlice({
     }) 
     .addCase(getLibraryRecommendBook.fulfilled, (state, action) => {
       state.libraryRecommend = action.payload.results; 
+    })
+    .addCase(getUserBooks.fulfilled, (state, action) => {
+      state.userBooks = action.payload;
   })
 })
 
