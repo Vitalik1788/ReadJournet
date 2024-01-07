@@ -120,6 +120,7 @@ export const CardImg = styled.img`
   width: 100%;
   height: 208px;
   border-radius: 8px;
+  cursor: pointer;
 
   @media screen and (min-width: 1280px) {
     height: 280px;

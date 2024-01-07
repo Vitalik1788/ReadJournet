@@ -5,8 +5,6 @@ import { toast } from "react-toastify";
 
 axios.defaults.baseURL = 'https://readjourney.b.goit.study/api';
 
-
-
 export const getRecommendBooks = createAsyncThunk(
   'books/getRecommendBooks',
   async (data, thunkAPI) => {
@@ -27,3 +25,4 @@ export const getRecommendBooks = createAsyncThunk(
     }
   }
 );
+

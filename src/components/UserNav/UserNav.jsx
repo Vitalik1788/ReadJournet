@@ -93,7 +93,7 @@ const UserNav = () => {
               <BurgerMenuLink to="/library">My library</BurgerMenuLink>
             </BurgerMenuItem>
           </ul>
-          <BurgerMenuBtn onClick={()=> dispatch(logout())}>Log out</BurgerMenuBtn>
+          <BurgerMenuBtn type='button' onClick={()=> dispatch(logout())}>Log out</BurgerMenuBtn>
         </MenuBox>
       </StyledModal>
     </>
