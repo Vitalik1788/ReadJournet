@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { IoChevronDown } from 'react-icons/io5';
+import { IoChevronDown, IoChevronUp } from 'react-icons/io5';
 import { FaRegTrashAlt } from 'react-icons/fa';
 
 export const Box = styled.div`
@@ -54,6 +54,8 @@ export const TitleLibrary = styled.h2`
 
 export const MenuBox = styled.div`
   display: flex;
+  justify-content: space-between;
+  min-width: 120px;
   border: 1px solid #3e3e3e;
   border-radius: 12px;
   padding: 12px 14px;
@@ -61,6 +63,7 @@ export const MenuBox = styled.div`
 
   @media screen and (min-width: 768px) {
     padding: 14px;
+    min-width: 153px;
   }
 `;
 
@@ -71,7 +74,6 @@ export const TitleFilter = styled.p`
   line-height: 1.33;
   letter-spacing: -0.02em;
   color: #f9f9f9;
-  margin-right: 28px;
 
   @media screen and (min-width: 768px) {
     font-size: 14px;
@@ -80,7 +82,45 @@ export const TitleFilter = styled.p`
   }
 `;
 
+export const FilterList = styled.ul`
+  position: absolute;
+  background-color: #262626;
+  border-radius: 12px;
+  padding: 14px;
+  padding-right: 48px;
+  margin-top: 4px;
+
+  @media screen and (min-width: 768px) {
+    padding-right: 72px;
+    margin-top: 8px;
+  }
+`;
+
+export const FilterItem = styled.li`
+  font-family: 'Gilroy';
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.33;
+  letter-spacing: -0.02em;
+  cursor: pointer;
+
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+    line-height: 1.29;
+  }
+
+  :not(:last-child) {
+    margin-bottom: 7px;
+  }
+`;
+
 export const Icon = styled(IoChevronDown)`
+  width: 16px;
+  height: 16px;
+  color: #f9f9f9;
+`;
+
+export const IconUp = styled(IoChevronUp)`
   width: 16px;
   height: 16px;
   color: #f9f9f9;
@@ -178,6 +218,10 @@ export const LibraryCardImg = styled.img`
   height: 208px;
   border-radius: 8px;
   margin-bottom: 8px;
+
+  @media screen and (min-width: 1280px) {
+    height: 250px;
+  }
 `;
 
 export const CardContentBox = styled.div`
@@ -215,6 +259,7 @@ export const TrashBox = styled.div`
   border-radius: 50px;
   border: 1px solid rgba(232, 80, 80, 0.2);
   background-color: rgba(232, 80, 80, 0.1);
+  cursor: pointer;
 `;
 
 export const Trash = styled(FaRegTrashAlt)`

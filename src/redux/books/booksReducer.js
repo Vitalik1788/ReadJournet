@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getLibraryRecommendBook, getRecommendBooks, getUserBooks } from "./booksOperation";
+import { deleteUserBook, getLibraryRecommendBook, getRecommendBooks, getUserBooks } from "./booksOperation";
 
 
 const BooksSlice = createSlice({
@@ -20,6 +20,10 @@ const BooksSlice = createSlice({
     })
     .addCase(getUserBooks.fulfilled, (state, action) => {
       state.userBooks = action.payload;
+    })
+    .addCase(deleteUserBook.fulfilled, (state, action) => {
+      const index = state.userBooks.findIndex(book => book._id === action.payload.id);
+      state.userBooks.splice(index, 1);
   })
 })
 

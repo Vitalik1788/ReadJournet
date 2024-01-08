@@ -7,8 +7,11 @@ import {
   BooksList,
   Box,
   CardContentBox,
+  FilterItem,
+  FilterList,
   Icon,
   IconBook,
+  IconUp,
   LibraryCardImg,
   MenuBox,
   Text,
@@ -19,12 +22,14 @@ import {
   TrashBox,
   Wrapper,
 } from './MyLibraryBooks.styled';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { selectUserBooks } from '../../redux/books/booksSelectors';
-import { getUserBooks } from '../../redux/books/booksOperation';
+import { deleteUserBook, getUserBooks } from '../../redux/books/booksOperation';
 import books_mobile from '../../assets/images/book-mobile.jpg';
 
 const MyLibraryBooks = () => {
+  const [filterOpen, setFilterOpen] = useState(false);
+  const [filterLabel, setFilterLabel] = useState('All books');
   const dispatch = useDispatch();
   const books = useSelector(selectUserBooks);
 
@@ -32,16 +37,68 @@ const MyLibraryBooks = () => {
     dispatch(getUserBooks());
   }, [dispatch]);
 
-  console.log(books);
+  function toggleFilter() {
+    if (filterOpen === false) {
+      setFilterOpen(true);
+    } else if (filterOpen !== false) {
+      setFilterOpen(false);
+    }
+  }
 
   return (
     <Box>
       <TitleBox>
         <TitleLibrary>My library</TitleLibrary>
-        <MenuBox>
-          <TitleFilter>All books</TitleFilter>
-          <Icon />
-        </MenuBox>
+        <div>
+          <MenuBox onClick={() => toggleFilter()}>
+            <TitleFilter>{filterLabel}</TitleFilter>
+            {!filterOpen ? <Icon /> : <IconUp />}
+          </MenuBox>
+          {filterOpen && (
+            <FilterList>
+              <FilterItem
+                style={
+                  filterLabel === 'Unread'
+                    ? { color: '#F9F9F9' }
+                    : { color: '#686868' }
+                }
+                onClick={() => setFilterLabel('Unread')}
+              >
+                Unread
+              </FilterItem>
+              <FilterItem
+                style={
+                  filterLabel === 'In progress'
+                    ? { color: '#F9F9F9' }
+                    : { color: '#686868' }
+                }
+                onClick={() => setFilterLabel('In progress')}
+              >
+                In progress
+              </FilterItem>
+              <FilterItem
+                style={
+                  filterLabel === 'Done'
+                    ? { color: '#F9F9F9' }
+                    : { color: '#686868' }
+                }
+                onClick={() => setFilterLabel('Done')}
+              >
+                Done
+              </FilterItem>
+              <FilterItem
+                style={
+                  filterLabel === 'All books'
+                    ? { color: '#F9F9F9' }
+                    : { color: '#686868' }
+                }
+                onClick={() => setFilterLabel('All books')}
+              >
+                All books
+              </FilterItem>
+            </FilterList>
+          )}
+        </div>
       </TitleBox>
 
       {!books ? (
@@ -57,7 +114,7 @@ const MyLibraryBooks = () => {
           </Text>
         </Wrapper>
       ) : (
-        <div style={{marginTop: "14px"}}>
+        <div style={{ marginTop: '14px' }}>
           <BooksList>
             {books &&
               books.map((book) => {
@@ -69,7 +126,9 @@ const MyLibraryBooks = () => {
                         <BookTitle>{book.title}</BookTitle>
                         <BookAuthor>{book.author}</BookAuthor>
                       </div>
-                      <TrashBox>
+                      <TrashBox
+                        onClick={() => dispatch(deleteUserBook(book._id))}
+                      >
                         <Trash />
                       </TrashBox>
                     </CardContentBox>

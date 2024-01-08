@@ -1,13 +1,20 @@
-import { useDispatch } from "react-redux";
-import { Author, CardBox, CloseCross, ModalBtn, ModalImage, Pages, StyledModal, Title } from "./BooksDetails.styled";
-import { addBookFromRecommend } from "../../redux/books/booksOperation";
-
-
+import { useDispatch } from 'react-redux';
+import {
+  Author,
+  CardBox,
+  CloseCross,
+  ModalBtn,
+  ModalImage,
+  Pages,
+  StyledModal,
+  Title,
+} from './BooksDetails.styled';
+import { addBookFromRecommend } from '../../redux/books/booksOperation';
 
 const BooksDetails = ({ bookForModal, isOpen, closeModal }) => {
   const dispatch = useDispatch();
   const { imageUrl, title, author, totalPages, _id } = bookForModal;
-  
+
   return (
     <div>
       <StyledModal
@@ -27,7 +34,12 @@ const BooksDetails = ({ bookForModal, isOpen, closeModal }) => {
           <Title>{title}</Title>
           <Author>{author}</Author>
           <Pages>{totalPages} pages</Pages>
-          <ModalBtn onClick={() => dispatch(addBookFromRecommend(_id))} type="button">Add to library</ModalBtn>
+          <ModalBtn
+            onClick={() => dispatch(addBookFromRecommend(_id))}
+            type="button"
+          >
+            Add to library
+          </ModalBtn>
         </CardBox>
       </StyledModal>
     </div>

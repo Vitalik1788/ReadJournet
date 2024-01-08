@@ -49,7 +49,7 @@ export const addBookFromRecommend = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const response = await axios.post(`/books/add/${id}`);
-      toast.success('Book success added to library');
+      toast.success('Book success added to library', { theme: 'dark' });
       return response.data;
     } catch (error) {
       toast.error(error.response.data.message);
@@ -67,5 +67,19 @@ export const getUserBooks = createAsyncThunk(
     } catch (error) {
       toast.error(error.response.data.message);
       return thunkAPI.rejectWithValue(error.response.data.message);}
+  }
+);
+
+export const deleteUserBook = createAsyncThunk(
+  'books/deleteUserBook',
+  async (id, thunkAPI) => {
+    try {
+      const response = await axios.delete(`/books/remove/${id}`);
+      toast.success(response.data.message, { theme: "dark" });
+      return response.data;
+    } catch (error) {
+      toast.error(error.response.data.message);
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
   }
 );
