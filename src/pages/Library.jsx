@@ -1,14 +1,15 @@
 import LibraryDashboard from "../components/LibraryDashboard/LibraryDashboard";
 import MyLibraryBooks from "../components/MyLibraryBooks/MyLibraryBooks";
+import { PageBox } from "./Library.styled";
 
 
 const Library = () => {
 
   return (
-    <div>
+    <PageBox>
       <LibraryDashboard />
       <MyLibraryBooks />
-    </div>)
+    </PageBox>)
 
 }
 

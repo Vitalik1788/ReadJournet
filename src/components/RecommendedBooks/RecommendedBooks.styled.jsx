@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { IoChevronBack, IoChevronForward } from 'react-icons/io5';
 
 export const BooksBox = styled.div`
   margin-left: auto;
@@ -60,7 +60,7 @@ export const BtnBox = styled.button`
   }
 `;
 
-export const LeftArrow = styled(FiChevronLeft)`
+export const LeftArrow = styled(IoChevronBack)`
   width: 16px;
   height: 16px;
   color: #f9f9f9;
@@ -71,7 +71,7 @@ export const LeftArrow = styled(FiChevronLeft)`
   }
 `;
 
-export const RightArrow = styled(FiChevronRight)`
+export const RightArrow = styled(IoChevronForward)`
   width: 16px;
   height: 16px;
   color: #f9f9f9;

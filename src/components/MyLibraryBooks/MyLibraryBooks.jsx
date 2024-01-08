@@ -1,7 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 import {
+  BookAuthor,
   BookBox,
+  BookItem,
+  BookTitle,
+  BooksList,
   Box,
+  CardContentBox,
   Icon,
   IconBook,
   LibraryCardImg,
@@ -10,6 +15,8 @@ import {
   TitleBox,
   TitleFilter,
   TitleLibrary,
+  Trash,
+  TrashBox,
   Wrapper,
 } from './MyLibraryBooks.styled';
 import { useEffect } from 'react';
@@ -50,17 +57,26 @@ const MyLibraryBooks = () => {
           </Text>
         </Wrapper>
       ) : (
-        <div>
-          <ul>
+        <div style={{marginTop: "14px"}}>
+          <BooksList>
             {books &&
               books.map((book) => {
                 return (
-                  <li key={book._id}>
+                  <BookItem key={book._id}>
                     <LibraryCardImg src={book.imageUrl} alt="Book cover" />
-                    
-                  </li>);
+                    <CardContentBox>
+                      <div style={{ maxWidth: '95px' }}>
+                        <BookTitle>{book.title}</BookTitle>
+                        <BookAuthor>{book.author}</BookAuthor>
+                      </div>
+                      <TrashBox>
+                        <Trash />
+                      </TrashBox>
+                    </CardContentBox>
+                  </BookItem>
+                );
               })}
-          </ul>
+          </BooksList>
         </div>
       )}
     </Box>
