@@ -1603,7 +1603,6 @@ https://fb.me/react-async-component-lifecycle-hooks`)}if(typeof e.getDerivedStat
   @media screen and (min-width: 768px) {
     font-size: 14px;
     line-height: 1.29;
-    margin-right: 53px;
   }
 `,pR=O.ul`
   position: absolute;
