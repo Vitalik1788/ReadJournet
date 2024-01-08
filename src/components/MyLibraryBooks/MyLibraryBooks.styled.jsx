@@ -78,7 +78,6 @@ export const TitleFilter = styled.p`
   @media screen and (min-width: 768px) {
     font-size: 14px;
     line-height: 1.29;
-    margin-right: 53px;
   }
 `;
 
