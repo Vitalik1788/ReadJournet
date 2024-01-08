@@ -8,7 +8,7 @@ const BooksSlice = createSlice({
     books: null,
     totalPages: null,
     libraryRecommend: null,
-    userBooks: null,
+    userBooks: [],
   },
   extraReducers: builder => builder
     .addCase(getRecommendBooks.fulfilled, (state, action) => {

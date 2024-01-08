@@ -45,6 +45,8 @@ const MyLibraryBooks = () => {
     }
   }
 
+  console.log(books);
+
   return (
     <Box>
       <TitleBox>
@@ -101,7 +103,7 @@ const MyLibraryBooks = () => {
         </div>
       </TitleBox>
 
-      {!books ? (
+      {books.length === 0 ? (
         <Wrapper>
           <BookBox>
             <IconBook src={books_mobile} alt="books" />

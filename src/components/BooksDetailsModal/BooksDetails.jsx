@@ -35,7 +35,7 @@ const BooksDetails = ({ bookForModal, isOpen, closeModal }) => {
           <Author>{author}</Author>
           <Pages>{totalPages} pages</Pages>
           <ModalBtn
-            onClick={() => dispatch(addBookFromRecommend(_id))}
+            onClick={() => { dispatch(addBookFromRecommend(_id)), closeModal() }}
             type="button"
           >
             Add to library
