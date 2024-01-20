@@ -82,142 +82,153 @@ const RegisterForm = () => {
         >
           {({ values, isSubmitting, errors, isValid }) => (
             <Form>
-              <InputsBox>
-                <Label htmlFor="name">Name:</Label>
-                {!isValid ? (
-                  <>
+              {!isValid ? (
+                <div style={{ position: 'relative' }}>
+                  <InputsBox
+                    style={
+                      errors.name
+                        ? { border: '1px solid #E90516' }
+                        : { border: '1px solid #30B94D' }
+                    }
+                  >
+                    <Label htmlFor="name">Name:</Label>
                     <StyledField
-                      style={
-                        errors.name
-                          ? { border: '1px solid #E90516' }
-                          : { border: '1px solid #30B94D' }
-                      }
                       id="name"
-                      type="text"
+                      type="name"
                       name="name"
                       value={values.name}
                       placeholder="Ilona Ratushniak"
+                      autocomplete="off"
                     />
-                    {errors.name ? (
-                      <>
-                        <Error style={{ color: '#E90516' }}>
-                          {errors.name}
-                        </Error>
-                        <IconInput>
-                          <use href={`${sprite}#icon-wrong`}></use>
-                        </IconInput>
-                      </>
-                    ) : (
-                      <>
-                        <Error style={{ color: '#30B94D' }}>
-                          Name is correct
-                        </Error>
-                        <IconInput>
-                          <use href={`${sprite}#icon-correct`}></use>
-                        </IconInput>
-                      </>
-                    )}
-                  </>
-                ) : (
-                  <>
+                  </InputsBox>
+                  {errors.name ? (
+                    <>
+                      <Error style={{ color: '#E90516' }}>{errors.name}</Error>
+                      <IconInput>
+                        <use href={`${sprite}#icon-wrong`}></use>
+                      </IconInput>
+                    </>
+                  ) : (
+                    <>
+                      <Error style={{ color: '#30B94D' }}>
+                        Name is correct
+                      </Error>
+                      <IconInput>
+                        <use href={`${sprite}#icon-correct`}></use>
+                      </IconInput>
+                    </>
+                  )}
+                </div>
+              ) : (
+                <>
+                  <InputsBox>
+                    <Label htmlFor="name">Name:</Label>
                     <StyledField
                       id="name"
-                      type="text"
+                      type="name"
                       name="name"
                       value={values.name}
                       placeholder="Ilona Ratushniak"
+                      autocomplete="off"
                     />
-                  </>
-                )}
-              </InputsBox>
+                  </InputsBox>
+                </>
+              )}
 
-              <InputsBox>
-                <Label htmlFor="email">Mail:</Label>
-                {!isValid ? (
-                  <>
-                    <StyledField
-                      style={
-                        errors.email
-                          ? { border: '1px solid #E90516' }
-                          : { border: '1px solid #30B94D' }
-                      }
-                      id="email"
-                      type="email"
-                      name="email"
-                      value={values.email}
-                      placeholder="Your@email.com"
-                    />
-                    {errors.email ? (
-                      <>
-                        <Error style={{ color: '#E90516' }}>
-                          {errors.email}
-                        </Error>
-                        <IconInput>
-                          <use href={`${sprite}#icon-wrong`}></use>
-                        </IconInput>
-                      </>
-                    ) : (
-                      <>
-                        <Error style={{ color: '#30B94D' }}>
-                          Email is correct
-                        </Error>
-                        <IconInput>
-                          <use href={`${sprite}#icon-correct`}></use>
-                        </IconInput>
-                      </>
-                    )}
-                  </>
-                ) : (
-                  <>
+              {!isValid ? (
+                <div style={{ position: 'relative' }}>
+                  <InputsBox
+                    style={
+                      errors.email
+                        ? { border: '1px solid #E90516' }
+                        : { border: '1px solid #30B94D' }
+                    }
+                  >
+                    <Label htmlFor="email">Mail:</Label>
                     <StyledField
                       id="email"
                       type="email"
                       name="email"
                       value={values.email}
                       placeholder="Your@email.com"
+                      autocomplete="off"
                     />
-                  </>
-                )}
-              </InputsBox>
-
-              <InputsBox>
-                <Label htmlFor="password">Password:</Label>
-                {!isValid ? (
-                  <>
+                  </InputsBox>
+                  {errors.email ? (
+                    <>
+                      <Error style={{ color: '#E90516' }}>{errors.email}</Error>
+                      <IconInput>
+                        <use href={`${sprite}#icon-wrong`}></use>
+                      </IconInput>
+                    </>
+                  ) : (
+                    <>
+                      <Error style={{ color: '#30B94D' }}>
+                        Email is correct
+                      </Error>
+                      <IconInput>
+                        <use href={`${sprite}#icon-correct`}></use>
+                      </IconInput>
+                    </>
+                  )}
+                </div>
+              ) : (
+                <>
+                  <InputsBox>
+                    <Label htmlFor="email">Mail:</Label>
                     <StyledField
-                      style={
-                        errors.password
-                          ? { border: '1px solid #E90516' }
-                          : { border: '1px solid #30B94D' }
-                      }
+                      id="email"
+                      type="email"
+                      name="email"
+                      value={values.email}
+                      placeholder="Your@email.com"
+                      autocomplete="off"
+                    />
+                  </InputsBox>
+                </>
+              )}
+
+              {!isValid ? (
+                <div style={{ position: 'relative' }}>
+                  <InputsBox
+                    style={
+                      errors.password
+                        ? { border: '1px solid #E90516' }
+                        : { border: '1px solid #30B94D' }
+                    }
+                  >
+                    <Label htmlFor="password">Password:</Label>
+                    <StyledField
                       id="password"
                       type="password"
                       name="password"
                       value={values.password}
                       placeholder="Yourpasswordhere"
+                      autocomplete="off"
                     />
-                    {errors.password ? (
-                      <>
-                        <Error style={{ color: '#E90516' }}>
-                          {errors.password}
-                        </Error>
-                        <IconInput>
-                          <use href={`${sprite}#icon-wrong`}></use>
-                        </IconInput>
-                      </>
-                    ) : (
-                      <>
-                        <Error style={{ color: '#30B94D' }}>
-                          Password is secure
-                        </Error>
-                        <IconInput>
-                          <use href={`${sprite}#icon-correct`}></use>
-                        </IconInput>
-                      </>
-                    )}
-                  </>
-                ) : (
-                  <>
+                  </InputsBox>
+                  {errors.email ? (
+                    <>
+                      <Error style={{ color: '#E90516' }}>{errors.email}</Error>
+                      <IconInput>
+                        <use href={`${sprite}#icon-wrong`}></use>
+                      </IconInput>
+                    </>
+                  ) : (
+                    <>
+                      <Error style={{ color: '#30B94D' }}>
+                        Email is correct
+                      </Error>
+                      <IconInput>
+                        <use href={`${sprite}#icon-correct`}></use>
+                      </IconInput>
+                    </>
+                  )}
+                </div>
+              ) : (
+                <>
+                  <InputsBox>
+                    <Label htmlFor="password">Password:</Label>
                     <StyledField
                       id="password"
                       type={passwordIsOpen ? 'text' : 'password'}
@@ -232,15 +243,15 @@ const RegisterForm = () => {
                         <use href={`${sprite}#icon-eyeOpen`} />
                       )}
                     </SVGWrapper>
-                  </>
-                )}
-              </InputsBox>
+                  </InputsBox>
+                </>
+              )}
 
               <BtnBox>
                 <Btn type="submit" disabled={isSubmitting}>
                   Registration
                 </Btn>
-                <LoginLink to='/login'>Already have an account?</LoginLink>
+                <LoginLink to="/login">Already have an account?</LoginLink>
               </BtnBox>
             </Form>
           )}

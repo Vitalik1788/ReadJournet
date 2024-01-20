@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 import { Field } from 'formik';
 import { Link } from 'react-router-dom';
 
-const field = Field;
 const link = Link;
 
 export const MainBox = styled.div`
@@ -93,63 +92,54 @@ export const TitleSpan = styled.span`
 
 export const InputsBox = styled.div`
   position: relative;
-`;
-
-export const Label = styled.label`
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  font-family: 'Gilroy';
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.33;
-  letter-spacing: -0.02em;
-  color: #686868;
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 8px;
+  padding: 14px;
+  border-radius: 12px;
+  background-color: #262626;
+  outline: none;
+  border: 1px solid transparent;
 
   @media screen and (min-width: 768px) {
-    top: 16px;
-    left: 16px;
-    font-size: 14px;
-    line-height: 1.29;
-    letter-spacing: -0.02em;
+    padding: 16px 14px;
   }
-`;
-
-export const StyledField = styled(field)`
-  width: 100%;
-  margin-bottom: 4px;
-  padding-top: 14px;
-  padding-bottom: 14px;
-  padding-left: 75px;
-  background-color: #262626;
-  border: none;
-  border-radius: 12px;
-  font-family: 'Gilroy';
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.33;
-  letter-spacing: -0.02em;
-  color: #f9f9f9;
-  outline: none;
 
   :hover,
   :focus {
     outline: none;
     border: 1px solid rgba(249, 249, 249, 0.1);
   }
+`;
+
+export const Label = styled.label`
+  margin-right: 10px;
+  font-family: 'Gilroy';
+  font-size: 12px;
+  font-weight: 500;
+  color: #686868;
+
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+  }  
+`;
+
+export const StyledField = styled(Field)`
+  width: 100%;
+  font-family: 'Gilroy';
+  font-size: 12px;
+  font-weight: 500;
+  background-color: inherit;
+  color: #f9f9f9;
+  border: none;
+  outline: none;
+
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+  }
 
   ::placeholder {
     color: #f9f9f9;
-  }
-
-  @media screen and (min-width: 768px) {
-    margin-bottom: 8px;
-    padding-top: 16px;
-    padding-bottom: 16px;
-    padding-left: 95px;
-    font-size: 14px;
-    line-height: 1.33;
-    letter-spacing: -0.02em;
   }
 `;
 
@@ -171,14 +161,14 @@ export const Error = styled.p`
 
 export const IconInput = styled.svg`
   position: absolute;
-  top: 13px;
-  left: 261px;
+  top: 15px;
+  right: 5%;
   width: 18px;
   height: 18px;
 
   @media screen and (min-width: 768px) {
+    right: 5%;
     top: 15px;
-    left: 434px;
     width: 20px;
     height: 20px;
   }
@@ -186,10 +176,11 @@ export const IconInput = styled.svg`
 
 export const SVGWrapper = styled.svg`
   position: absolute;
-  right: 20px;
-  top: 14px;
+  right: 5%;
+  top: 50%;
   width: 18px;
   height: 18px;
+  transform: translate(-5%, -50%);
 
   @media screen and (min-width: 768px) {
     width: 20px;
@@ -208,7 +199,7 @@ export const BtnBox = styled.div`
 `;
 
 export const Btn = styled.button`
-  margin-top: 12px;
+  margin-top: 64px;
   padding: 12px 29px 12px 29px;
   background-color: #f9f9f9;
   border: none;
@@ -218,6 +209,7 @@ export const Btn = styled.button`
   line-height: 1.29;
   font-size: 14px;
   color: #1f1f1f;
+  border: 1px solid transparent;
 
   :hover,
   :focus {

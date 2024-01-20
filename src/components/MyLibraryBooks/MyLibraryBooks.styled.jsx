@@ -217,6 +217,7 @@ export const LibraryCardImg = styled.img`
   height: 208px;
   border-radius: 8px;
   margin-bottom: 8px;
+  cursor: pointer;
 
   @media screen and (min-width: 1280px) {
     height: 250px;

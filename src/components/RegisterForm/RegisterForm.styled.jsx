@@ -93,63 +93,54 @@ export const TitleSpan = styled.span`
 
 export const InputsBox = styled.div`
   position: relative;
-`;
-
-export const Label = styled.label`
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  font-family: 'Gilroy';
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.33;
-  letter-spacing: -0.02em;
-  color: #686868;
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 8px;
+  padding: 14px;
+  border-radius: 12px;
+  background-color: #262626;
+  outline: none;
+  border: 1px solid transparent;
 
   @media screen and (min-width: 768px) {
-    top: 16px;
-    left: 16px;
-    font-size: 14px;
-    line-height: 1.29;
-    letter-spacing: -0.02em;
+    padding: 16px 14px;
   }
-`;
-
-export const StyledField = styled(field)`
-  width: 100%;
-  margin-bottom: 4px;
-  padding-top: 14px;
-  padding-bottom: 14px;
-  padding-left: 75px;
-  background-color: #262626;
-  border: none;
-  border-radius: 12px;
-  font-family: 'Gilroy';
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.33;
-  letter-spacing: -0.02em;
-  color: #f9f9f9;
-  outline: none;
 
   :hover,
   :focus {
     outline: none;
     border: 1px solid rgba(249, 249, 249, 0.1);
   }
+`;
+
+export const Label = styled.label`
+  margin-right: 10px;
+  font-family: 'Gilroy';
+  font-size: 12px;
+  font-weight: 500;
+  color: #686868;
+
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+  }
+`;
+
+export const StyledField = styled(Field)`
+  width: 100%;
+  font-family: 'Gilroy';
+  font-size: 12px;
+  font-weight: 500;
+  background-color: inherit;
+  color: #f9f9f9;
+  border: none;
+  outline: none;
+
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+  }
 
   ::placeholder {
     color: #f9f9f9;
-  }
-
-  @media screen and (min-width: 768px) {
-    margin-bottom: 8px;
-    padding-top: 16px;
-    padding-bottom: 16px;
-    padding-left: 95px;
-    font-size: 14px;
-    line-height: 1.33;
-    letter-spacing: -0.02em;
   }
 `;
 
@@ -218,6 +209,7 @@ export const Btn = styled.button`
   line-height: 1.29;
   font-size: 14px;
   color: #1f1f1f;
+  border: 1px solid transparent;
 
   :hover,
   :focus {
