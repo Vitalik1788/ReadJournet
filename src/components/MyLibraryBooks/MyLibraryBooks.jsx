@@ -23,10 +23,14 @@ import {
   Wrapper,
 } from './MyLibraryBooks.styled';
 import { useEffect, useState } from 'react';
-import { selectUserBooks } from '../../redux/books/booksSelectors';
+import {
+  selectIsLoading,
+  selectUserBooks,
+} from '../../redux/books/booksSelectors';
 import { deleteUserBook, getUserBooks } from '../../redux/books/booksOperation';
 import books_mobile from '../../assets/images/book-mobile.jpg';
 import BooksDetails from '../BooksDetailsModal/BooksDetails';
+import Spinner from '../Spinner/Spinner';
 
 const MyLibraryBooks = () => {
   const [filterOpen, setFilterOpen] = useState(false);
@@ -35,6 +39,7 @@ const MyLibraryBooks = () => {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   const books = useSelector(selectUserBooks);
+  const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
     dispatch(getUserBooks());
@@ -129,33 +134,37 @@ const MyLibraryBooks = () => {
           </Wrapper>
         ) : (
           <div style={{ marginTop: '14px' }}>
-            <BooksList>
-              {books &&
-                books.map((book) => {
-                  return (
-                    <BookItem key={book._id}>
-                      <LibraryCardImg
-                        src={book.imageUrl}
-                        alt="Book cover"
-                        onClick={() => {
-                        setBookForModal(book), modalOpen();
-                        }}
-                      />
-                      <CardContentBox>
-                        <div style={{ maxWidth: '95px' }}>
-                          <BookTitle>{book.title}</BookTitle>
-                          <BookAuthor>{book.author}</BookAuthor>
-                        </div>
-                        <TrashBox
-                          onClick={() => dispatch(deleteUserBook(book._id))}
-                        >
-                          <Trash />
-                        </TrashBox>
-                      </CardContentBox>
-                    </BookItem>
-                  );
-                })}
-            </BooksList>
+            {isLoading ? (
+              <Spinner />
+            ) : (
+              <BooksList>
+                {books &&
+                  books.map((book) => {
+                    return (
+                      <BookItem key={book._id}>
+                        <LibraryCardImg
+                          src={book.imageUrl}
+                          alt="Book cover"
+                          onClick={() => {
+                            setBookForModal(book), modalOpen();
+                          }}
+                        />
+                        <CardContentBox>
+                          <div style={{ maxWidth: '95px' }}>
+                            <BookTitle>{book.title}</BookTitle>
+                            <BookAuthor>{book.author}</BookAuthor>
+                          </div>
+                          <TrashBox
+                            onClick={() => dispatch(deleteUserBook(book._id))}
+                          >
+                            <Trash />
+                          </TrashBox>
+                        </CardContentBox>
+                      </BookItem>
+                    );
+                  })}
+              </BooksList>
+            )}
           </div>
         )}
       </Box>

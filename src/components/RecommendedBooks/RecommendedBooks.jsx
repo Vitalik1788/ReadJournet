@@ -12,14 +12,16 @@ import {
   RightArrow,
   Wrapper,
 } from './RecommendedBooks.styled';
-import { useEffect, useState } from 'react';
-import { getRecommendBooks } from '../../redux/books/booksOperation';
+import { useLayoutEffect, useState } from 'react';
+import { getRecommendBooks, getUserBooks } from '../../redux/books/booksOperation';
 import {
-  selectBooks,
+  selectIsLoading,
   selectTotalPages,
 } from '../../redux/books/booksSelectors';
 import useSize from '../../hooks/getWindowSize';
 import BooksDetails from '../BooksDetailsModal/BooksDetails';
+import Spinner from '../Spinner/Spinner';
+import { selectVisibleRecommend } from '../../redux/filters/filtersSelectors';
 
 const RecommendedBooks = () => {
   const [page, setPage] = useState(1);
@@ -27,16 +29,19 @@ const RecommendedBooks = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const dispatch = useDispatch();
-  const books = useSelector(selectBooks);
   const totalPages = useSelector(selectTotalPages);
+  const isLoading = useSelector(selectIsLoading);
+  const visibleBooks = useSelector(selectVisibleRecommend);
   const windowsize = useSize();
-
-  useEffect(() => {
+    
+  useLayoutEffect(() => {
     dispatch(getRecommendBooks({ windowsize, page }));
+    dispatch(getUserBooks());
   }, [dispatch, windowsize, page]);
 
-  function modalOpen() {
+  function modalOpen(book) {
     setIsOpen(true);
+    setBookForModal(book);
     document.body.style.overflowY = 'hidden';
   }
 
@@ -74,26 +79,33 @@ const RecommendedBooks = () => {
         </Wrapper>
 
         <div>
-          <CardList>
-            {books &&
-              books.map((book) => {
-                return (
-                  <CardItem key={book._id}>
-                    <CardImg
-                      src={book.imageUrl}
-                      alt="Book cover"
-                      onClick={() => {setBookForModal(book), modalOpen()}}
-                    />
-                    <CardTitle>{book.title}</CardTitle>
-                    <CardAuthor>{book.author}</CardAuthor>
-                  </CardItem>
-                );
-              })}
-          </CardList>
+          {isLoading ? (
+            <Spinner />
+          ) : (
+            <CardList>
+              {visibleBooks &&
+                visibleBooks.map((book) => {
+                  return (
+                    <CardItem key={book._id}>
+                      <CardImg
+                        src={book.imageUrl}
+                        alt="Book cover"
+                        onClick={() => modalOpen(book)}
+                      />
+                      <CardTitle>{book.title}</CardTitle>
+                      <CardAuthor>{book.author}</CardAuthor>
+                    </CardItem>
+                  );
+                })}
+            </CardList>
+          )}
         </div>
       </BooksBox>
-
-      <BooksDetails bookForModal={bookForModal} isOpen={isOpen} closeModal={closeModal} />
+      <BooksDetails
+        bookForModal={bookForModal}
+        isOpen={isOpen}
+        closeModal={closeModal}
+      />
     </>
   );
 };

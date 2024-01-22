@@ -9,21 +9,23 @@ import {
   StyledModal,
   Title,
 } from './BooksDetails.styled';
-import { addBookFromRecommend, deleteUserBook } from '../../redux/books/booksOperation';
+import { addBookFromRecommend } from '../../redux/books/booksOperation';
 import { selectUserBooks } from '../../redux/books/booksSelectors';
 import { useLayoutEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const BooksDetails = ({ bookForModal, isOpen, closeModal }) => {
   const [isInFavorite, setIsInFavorite] = useState(false);
   const dispatch = useDispatch();
-  const { imageUrl, title, author, totalPages, _id } = bookForModal;
+  const navigation = useNavigate();
   const books = useSelector(selectUserBooks);
+  const { imageUrl, title, author, totalPages, _id } = bookForModal;
 
   useLayoutEffect(() => {
     if (bookForModal && books.includes(bookForModal)) {
       setIsInFavorite(true);
     }
-  }, [ bookForModal, books]);
+  }, [bookForModal, books]);
 
   return (
     <div>
@@ -45,14 +47,7 @@ const BooksDetails = ({ bookForModal, isOpen, closeModal }) => {
           <Author>{author}</Author>
           <Pages>{totalPages} pages</Pages>
           {isInFavorite ? (
-            <ModalBtn
-              onClick={() => {
-                dispatch(deleteUserBook(_id)), closeModal();
-              }}
-              type="button"
-            >
-              Remove from library
-            </ModalBtn>
+            <ModalBtn onClick={() => navigation("/reading")} type="button">Start reading</ModalBtn>
           ) : (
             <ModalBtn
               onClick={() => {
@@ -62,7 +57,7 @@ const BooksDetails = ({ bookForModal, isOpen, closeModal }) => {
             >
               Add to library
             </ModalBtn>
-          )}          
+          )}
         </CardBox>
       </StyledModal>
     </div>

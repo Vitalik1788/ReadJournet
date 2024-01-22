@@ -20,9 +20,18 @@ import {
 import sprite from '../../assets/images/sprite.svg';
 import books from '../../assets/images/books-desktop.jpg';
 import { useNavigate } from 'react-router-dom';
+import { filterRecommend } from '../../redux/filters/filtersRuducer';
+import { useDispatch } from 'react-redux';
 
 const Filter = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch()
+
+  function handleSubmit(values) {
+    if (values) {
+      dispatch(filterRecommend(values));
+    }    
+  }
 
   return (
     <Box>
@@ -33,6 +42,7 @@ const Filter = () => {
             bookTitle: '',
             author: '',
           }}
+          onSubmit={(values) => handleSubmit(values)}
         >
           {({ values }) => (
             <Form>
@@ -44,6 +54,7 @@ const Filter = () => {
                   name="bookTitle"
                   value={values.bookTitle}
                   placeholder="Enter text"
+                  autocomplete="off"
                 />
               </InputBox>
               <InputBox>
@@ -54,6 +65,7 @@ const Filter = () => {
                   name="author"
                   value={values.author}
                   placeholder="Enter text"
+                  autocomplete="off"
                 />
               </InputBox>
               <FiltersBtn type="submit">To apply</FiltersBtn>

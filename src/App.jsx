@@ -14,6 +14,7 @@ import { selectIsRefreshing } from './redux/auth/authSelector';
 import { userRefresh } from './redux/auth/authOperation';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import MyReading from './pages/MyReading';
 
 function App() {
   const dispatch = useDispatch();
@@ -36,6 +37,7 @@ function App() {
               <Route path="/" element={<Layout />}>
                 <Route path="/recommended" element={<RecommendedPage />} />
                 <Route path="/library" element={<Library />} />
+                <Route path='/reading' element={<MyReading />} />
               </Route>
             </Route>
           </Routes>
