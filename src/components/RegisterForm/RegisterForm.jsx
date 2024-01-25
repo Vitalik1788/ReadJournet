@@ -207,9 +207,9 @@ const RegisterForm = () => {
                       autocomplete="off"
                     />
                   </InputsBox>
-                  {errors.email ? (
+                  {errors.password ? (
                     <>
-                      <Error style={{ color: '#E90516' }}>{errors.email}</Error>
+                      <Error style={{ color: '#E90516' }}>{errors.password}</Error>
                       <IconInput>
                         <use href={`${sprite}#icon-wrong`}></use>
                       </IconInput>
@@ -217,7 +217,7 @@ const RegisterForm = () => {
                   ) : (
                     <>
                       <Error style={{ color: '#30B94D' }}>
-                        Email is correct
+                        Password is correct
                       </Error>
                       <IconInput>
                         <use href={`${sprite}#icon-correct`}></use>

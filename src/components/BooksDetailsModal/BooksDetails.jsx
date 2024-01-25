@@ -13,6 +13,7 @@ import { addBookFromRecommend } from '../../redux/books/booksOperation';
 import { selectUserBooks } from '../../redux/books/booksSelectors';
 import { useLayoutEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ReadingBook from '../ReadingBook/ReadingBook';
 
 const BooksDetails = ({ bookForModal, isOpen, closeModal }) => {
   const [isInFavorite, setIsInFavorite] = useState(false);
@@ -28,39 +29,44 @@ const BooksDetails = ({ bookForModal, isOpen, closeModal }) => {
   }, [bookForModal, books]);
 
   return (
-    <div>
-      <StyledModal
-        isOpen={isOpen}
-        onRequestClose={closeModal}
-        ariaHideApp={false}
-        contentLabel="Book details modal"
-        style={{
-          overlay: {
-            backgroundColor: 'rgba(20, 20, 20, 0.6)',
-          },
-        }}
-      >
-        <CloseCross onClick={() => closeModal()} />
-        <CardBox>
-          <ModalImage src={imageUrl} alt="book cover" />
-          <Title>{title}</Title>
-          <Author>{author}</Author>
-          <Pages>{totalPages} pages</Pages>
-          {isInFavorite ? (
-            <ModalBtn onClick={() => navigation("/reading")} type="button">Start reading</ModalBtn>
-          ) : (
-            <ModalBtn
-              onClick={() => {
-                dispatch(addBookFromRecommend(_id)), closeModal();
-              }}
-              type="button"
-            >
-              Add to library
-            </ModalBtn>
-          )}
-        </CardBox>
-      </StyledModal>
-    </div>
+    <>
+      <div>
+        <StyledModal
+          isOpen={isOpen}
+          onRequestClose={closeModal}
+          ariaHideApp={false}
+          contentLabel="Book details modal"
+          style={{
+            overlay: {
+              backgroundColor: 'rgba(20, 20, 20, 0.6)',
+            },
+          }}
+        >
+          <CloseCross onClick={() => closeModal()} />
+          <CardBox>
+            <ModalImage src={imageUrl} alt="book cover" />
+            <Title>{title}</Title>
+            <Author>{author}</Author>
+            <Pages>{totalPages} pages</Pages>
+            {isInFavorite ? (
+              <ModalBtn onClick={() => navigation('/reading')} type="button">
+                Start reading
+              </ModalBtn>
+            ) : (
+              <ModalBtn
+                onClick={() => {
+                  dispatch(addBookFromRecommend(_id)), closeModal();
+                }}
+                type="button"
+              >
+                Add to library
+              </ModalBtn>
+            )}
+          </CardBox>
+        </StyledModal>
+      </div>
+
+    </>
   );
 };
 
