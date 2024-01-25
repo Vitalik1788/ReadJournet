@@ -6,6 +6,7 @@ export const Box = styled.div`
   margin-right: auto;
   margin-top: 10px;
   padding: 20px;
+  padding-bottom: 40px;
   background-color: #1f1f1f;
   border-radius: 30px;
 
@@ -16,7 +17,22 @@ export const Box = styled.div`
   @media screen and (min-width: 375px) and (max-width: 767px) {
     width: 335px;
   }
+
+  @media screen and (min-width: 768px) {
+    width: 704px;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 32px;
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-bottom: 84px;
+  }
 `;
+
+export const FilterWrapper = styled.div` 
+  width: 100%;
+  margin-right: 40px;
+`
 
 export const FilterTitle = styled.h2`
   margin-bottom: 8px;
@@ -26,6 +42,10 @@ export const FilterTitle = styled.h2`
   font-weight: 500;
   line-height: 1.2;
   color: #f9f9f9;
+
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 export const StyledForm = styled.div`
@@ -35,6 +55,10 @@ export const StyledForm = styled.div`
   padding: 14px;
   background-color: #262626;
   border-radius: 12px;
+
+  @media screen and (min-width: 768px) {
+    padding: 16px 14px;
+  }
 `;
 
 export const StyledLabel = styled.label`
@@ -43,6 +67,10 @@ export const StyledLabel = styled.label`
   font-size: 12px;
   font-weight: 500;
   color: #686868;
+
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 export const StyledField = styled(Field)`
@@ -61,9 +89,14 @@ export const StyledField = styled(Field)`
   :active {
     outline: none;
   }
+
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 export const FilterBtn = styled.button`
+  margin-bottom: 40px;
   padding: 10px 20px;
   font-family: 'Gilroy';
   font-size: 14px;
@@ -77,5 +110,10 @@ export const FilterBtn = styled.button`
   :focus {
     background-color: #f9f9f9;
     color: #1f1f1f;
+  }
+
+  @media screen and (min-width: 768px) {
+    padding: 12px 28px;
+    font-size: 16px;
   }
 `;
