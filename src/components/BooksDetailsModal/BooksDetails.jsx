@@ -13,7 +13,6 @@ import { addBookFromRecommend } from '../../redux/books/booksOperation';
 import { selectUserBooks } from '../../redux/books/booksSelectors';
 import { useLayoutEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ReadingBook from '../ReadingBook/ReadingBook';
 
 const BooksDetails = ({ bookForModal, isOpen, closeModal }) => {
   const [isInFavorite, setIsInFavorite] = useState(false);
