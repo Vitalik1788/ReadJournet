@@ -54,7 +54,7 @@ const Filter = () => {
                   name="bookTitle"
                   value={values.bookTitle}
                   placeholder="Enter text"
-                  autocomplete="off"
+                  autoComplete="off"
                 />
               </InputBox>
               <InputBox>
@@ -65,7 +65,7 @@ const Filter = () => {
                   name="author"
                   value={values.author}
                   placeholder="Enter text"
-                  autocomplete="off"
+                  autoComplete="off"
                 />
               </InputBox>
               <FiltersBtn type="submit">To apply</FiltersBtn>

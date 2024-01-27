@@ -1,12 +1,13 @@
 import ReadingBook from '../components/ReadingBook/ReadingBook';
 import ReadingFilter from '../components/ReadingFilter/ReadingFilter';
+import { PageBox } from './MyReading.styled';
 
 const MyReading = () => {
   return (
-    <div>
+    <PageBox>
       <ReadingFilter />
       <ReadingBook />
-    </div>
+    </PageBox>
   );
 };
 

@@ -27,11 +27,24 @@ export const Box = styled.div`
     padding-right: 32px;
     padding-bottom: 84px;
   }
+
+  @media screen and (min-width: 1280px) {
+    display: block;
+    width: 353px;
+    padding-top: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-left: 0;
+  }
 `;
 
 export const FilterWrapper = styled.div` 
   width: 100%;
   margin-right: 40px;
+
+  @media screen and (min-width: 1280px) {
+    margin-right: 16px;
+  }
 `
 
 export const FilterTitle = styled.h2`

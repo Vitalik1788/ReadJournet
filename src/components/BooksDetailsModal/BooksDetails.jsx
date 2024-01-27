@@ -9,7 +9,10 @@ import {
   StyledModal,
   Title,
 } from './BooksDetails.styled';
-import { addBookFromRecommend } from '../../redux/books/booksOperation';
+import {
+  addBookFromRecommend,
+  addReadingBook,
+} from '../../redux/books/booksOperation';
 import { selectUserBooks } from '../../redux/books/booksSelectors';
 import { useLayoutEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -48,7 +51,13 @@ const BooksDetails = ({ bookForModal, isOpen, closeModal }) => {
             <Author>{author}</Author>
             <Pages>{totalPages} pages</Pages>
             {isInFavorite ? (
-              <ModalBtn onClick={() => navigation('/reading')} type="button">
+              <ModalBtn
+                onClick={() => {
+                  dispatch(addReadingBook(bookForModal)),
+                    navigation('/reading');
+                }}
+                type="button"
+              >
                 Start reading
               </ModalBtn>
             ) : (
@@ -64,7 +73,6 @@ const BooksDetails = ({ bookForModal, isOpen, closeModal }) => {
           </CardBox>
         </StyledModal>
       </div>
-
     </>
   );
 };

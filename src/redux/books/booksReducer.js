@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
+  addReadingBook,
   deleteUserBook,
   getLibraryRecommendBook,
   getRecommendBooks,
@@ -15,6 +16,7 @@ const BooksSlice = createSlice({
     userBooks: [],
     isLoading: false,
     error: null,
+    readingBook: null,
   },
   extraReducers: (builder) =>
     builder
@@ -51,7 +53,11 @@ const BooksSlice = createSlice({
           (book) => book._id === action.payload.id
         );
         state.userBooks.splice(index, 1);
-      }),
+      })
+      .addCase(addReadingBook.fulfilled, (state, action) => {
+        state.readingBook = action.payload;
+      })
+  
 });
 
 export const booksReducer = BooksSlice.reducer;

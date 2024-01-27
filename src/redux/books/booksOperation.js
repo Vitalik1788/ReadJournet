@@ -66,7 +66,8 @@ export const getUserBooks = createAsyncThunk(
       return response.data;
     } catch (error) {
       toast.error(error.response.data.message);
-      return thunkAPI.rejectWithValue(error.response.data.message);}
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
   }
 );
 
@@ -75,11 +76,22 @@ export const deleteUserBook = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const response = await axios.delete(`/books/remove/${id}`);
-      toast.success(response.data.message, { theme: "dark" });
+      toast.success(response.data.message, { theme: 'dark' });
       return response.data;
     } catch (error) {
       toast.error(error.response.data.message);
       return thunkAPI.rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const addReadingBook = createAsyncThunk(
+  'books/addReadingBook',
+  async (book, thunkAPI) => {
+    try {
+      return book;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );

@@ -9,7 +9,6 @@ export const StyledModal = styled(Modal)`
   transform: translate(-50%, -50%);
   width: 100%;
   max-width: 335px;
-  height: 421px;
   padding: 40px 20px;
   background-color: #262626;
   border-radius: 12px;
@@ -18,7 +17,6 @@ export const StyledModal = styled(Modal)`
 
   @media screen and (min-width: 768px) {
     max-width: 500px;
-    height: 483px;
   }
 `;
 
