@@ -13,15 +13,18 @@ import {
   addBookFromRecommend,
   addReadingBook,
 } from '../../redux/books/booksOperation';
-import { selectUserBooks } from '../../redux/books/booksSelectors';
+import { selectError, selectUserBooks } from '../../redux/books/booksSelectors';
 import { useLayoutEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import AddedBook from '../ModalAddedBook/AddedBook';
 
 const BooksDetails = ({ bookForModal, isOpen, closeModal }) => {
   const [isInFavorite, setIsInFavorite] = useState(false);
+  const [successModal, setSuccessModal] = useState(false);
   const dispatch = useDispatch();
   const navigation = useNavigate();
   const books = useSelector(selectUserBooks);
+  const addedError = useSelector(selectError);
   const { imageUrl, title, author, totalPages, _id } = bookForModal;
 
   useLayoutEffect(() => {
@@ -29,6 +32,30 @@ const BooksDetails = ({ bookForModal, isOpen, closeModal }) => {
       setIsInFavorite(true);
     }
   }, [bookForModal, books]);
+
+  function startReading() {
+    dispatch(addReadingBook(bookForModal));
+    closeModal();
+    navigation('/reading');
+  }
+
+  function closeToLibrary() {
+    dispatch(addBookFromRecommend(_id));
+    closeModal();
+    if (!addedError) {
+      openSuccessModal();
+    }
+  }
+
+  function openSuccessModal() {
+    setSuccessModal(true);
+    document.body.style.overflowY = 'hidden';
+  }
+
+  function closeSuccessModal() {
+    setSuccessModal(false);
+    document.body.style.overflowY = 'unset';
+  }
 
   return (
     <>
@@ -51,29 +78,21 @@ const BooksDetails = ({ bookForModal, isOpen, closeModal }) => {
             <Author>{author}</Author>
             <Pages>{totalPages} pages</Pages>
             {isInFavorite ? (
-              <ModalBtn
-                onClick={() => {
-                  dispatch(addReadingBook(bookForModal)),
-                  closeModal();
-                  navigation('/reading');
-                }}
-                type="button"
-              >
+              <ModalBtn onClick={startReading} type="button">
                 Start reading
               </ModalBtn>
             ) : (
-              <ModalBtn
-                onClick={() => {
-                  dispatch(addBookFromRecommend(_id)), closeModal();
-                }}
-                type="button"
-              >
+              <ModalBtn onClick={closeToLibrary} type="button">
                 Add to library
               </ModalBtn>
             )}
           </CardBox>
         </StyledModal>
       </div>
+      <AddedBook
+        isModalOpen={successModal}
+        closeSuccessModal={closeSuccessModal}
+      />
     </>
   );
 };

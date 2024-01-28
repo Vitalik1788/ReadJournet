@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
+  addBookFromRecommend,
   addReadingBook,
   deleteUserBook,
   getLibraryRecommendBook,
@@ -33,6 +34,12 @@ const BooksSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       })
+      .addCase(addBookFromRecommend.fulfilled, (state) => {
+        state.error = null;
+      })
+      .addCase(addBookFromRecommend.rejected, (state, action) => {
+        state.error = action.payload;
+      })
       .addCase(getLibraryRecommendBook.fulfilled, (state, action) => {
         state.libraryRecommend = action.payload.results;
       })
@@ -56,8 +63,7 @@ const BooksSlice = createSlice({
       })
       .addCase(addReadingBook.fulfilled, (state, action) => {
         state.readingBook = action.payload;
-      })
-  
+      }),
 });
 
 export const booksReducer = BooksSlice.reducer;
