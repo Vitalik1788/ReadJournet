@@ -1,10 +1,16 @@
-import { useSelector } from "react-redux";
-import { BookAuthor, BookBox, BookIMG, BookTitle, ReadBox, SVGWrapper, Title } from "./ReadingBook.styled";
-import { selectReadingBook } from "../../redux/books/booksSelectors";
-import { useState } from "react";
+import { useSelector } from 'react-redux';
+import {
+  BookAuthor,
+  BookBox,
+  BookIMG,
+  BookTitle,
+  ReadBox,
+  SVGWrapper,
+  Title,
+} from './ReadingBook.styled';
+import { selectReadingBook } from '../../redux/books/booksSelectors';
+import { useState } from 'react';
 import sprite from '../../assets/images/sprite.svg';
-
-
 
 const ReadingBook = () => {
   const [isReading, setIsReading] = useState(false);
@@ -23,7 +29,7 @@ const ReadingBook = () => {
               <use href={`${sprite}#icon-videoStop`}></use>
             </SVGWrapper>
           ) : (
-              <SVGWrapper onClick={() => setIsReading(true)}>
+            <SVGWrapper onClick={() => setIsReading(true)}>
               <use href={`${sprite}#icon-videoStart`}></use>
             </SVGWrapper>
           )}
@@ -32,6 +38,5 @@ const ReadingBook = () => {
     </ReadBox>
   );
 };
-
 
 export default ReadingBook;

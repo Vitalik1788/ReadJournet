@@ -111,6 +111,7 @@ export const SVGWrapper = styled.svg`
   display: block;
   margin-left: auto;
   margin-right: auto;
+  cursor: pointer;
 
   @media screen and (min-width: 768px) {
     width: 50px;

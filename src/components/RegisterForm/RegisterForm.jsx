@@ -98,7 +98,7 @@ const RegisterForm = () => {
                       name="name"
                       value={values.name}
                       placeholder="Ilona Ratushniak"
-                      autocomplete="off"
+                      autoComplete="off"
                     />
                   </InputsBox>
                   {errors.name ? (
@@ -129,7 +129,7 @@ const RegisterForm = () => {
                       name="name"
                       value={values.name}
                       placeholder="Ilona Ratushniak"
-                      autocomplete="off"
+                      autoComplete="off"
                     />
                   </InputsBox>
                 </>
@@ -182,7 +182,7 @@ const RegisterForm = () => {
                       name="email"
                       value={values.email}
                       placeholder="Your@email.com"
-                      autocomplete="off"
+                      autoComplete="off"
                     />
                   </InputsBox>
                 </>
@@ -204,12 +204,14 @@ const RegisterForm = () => {
                       name="password"
                       value={values.password}
                       placeholder="Yourpasswordhere"
-                      autocomplete="off"
+                      autoComplete="off"
                     />
                   </InputsBox>
                   {errors.password ? (
                     <>
-                      <Error style={{ color: '#E90516' }}>{errors.password}</Error>
+                      <Error style={{ color: '#E90516' }}>
+                        {errors.password}
+                      </Error>
                       <IconInput>
                         <use href={`${sprite}#icon-wrong`}></use>
                       </IconInput>
@@ -235,6 +237,7 @@ const RegisterForm = () => {
                       name="password"
                       value={values.password}
                       placeholder="Yourpasswordhere"
+                      autoComplete="off"
                     />
                     <SVGWrapper onClick={() => togglePassword()}>
                       {passwordIsOpen ? (

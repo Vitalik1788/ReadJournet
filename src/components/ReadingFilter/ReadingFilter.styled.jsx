@@ -35,6 +35,7 @@ export const Box = styled.div`
     padding-left: 20px;
     padding-right: 20px;
     margin-left: 0;
+    margin-top: 16px;
   }
 `;
 

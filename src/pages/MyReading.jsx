@@ -4,10 +4,12 @@ import { PageBox } from './MyReading.styled';
 
 const MyReading = () => {
   return (
-    <PageBox>
-      <ReadingFilter />
-      <ReadingBook />
-    </PageBox>
+    <>
+      <PageBox>
+        <ReadingFilter />
+        <ReadingBook />
+      </PageBox>
+    </>    
   );
 };
 

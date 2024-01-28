@@ -54,7 +54,8 @@ const BooksDetails = ({ bookForModal, isOpen, closeModal }) => {
               <ModalBtn
                 onClick={() => {
                   dispatch(addReadingBook(bookForModal)),
-                    navigation('/reading');
+                  closeModal();
+                  navigation('/reading');
                 }}
                 type="button"
               >
