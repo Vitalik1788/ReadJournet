@@ -80,7 +80,7 @@ const LibraryDashboard = () => {
                 <InputLabel>Number of pages:</InputLabel>
                 <InputField
                   id="pages"
-                  type="text"
+                  type="number"
                   name="pages"
                   value={values.pages}
                   placeholder="0"
