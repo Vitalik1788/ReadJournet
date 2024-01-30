@@ -27,8 +27,8 @@ export const SVGCirclePart = styled.svg`
 
 export const Wrapper = styled.div`  
   padding-top: 20px;
+  padding-bottom: 20px;
   background-color: #262626;
-  min-height: 211px;
   border-radius: 12px;
 `;
 
