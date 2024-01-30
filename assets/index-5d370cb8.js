@@ -2109,8 +2109,8 @@ https://fb.me/react-async-component-lifecycle-hooks`)}if(typeof e.getDerivedStat
   stroke: #f9f9f9;
 `,CN=C.div`  
   padding-top: 20px;
+  padding-bottom: 20px;
   background-color: #262626;
-  min-height: 211px;
   border-radius: 12px;
 `,TN=C.div`
   width: 116px;
