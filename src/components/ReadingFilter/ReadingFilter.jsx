@@ -1,10 +1,10 @@
 import { Form, Formik } from "formik";
 import { Box, FilterBtn, FilterTitle, FilterWrapper, StyledField, StyledForm, StyledLabel } from "./ReadingFilter.styled";
 import ProgressDefault from "../ReadProgressDefault/ReadProgressDefault";
+import ReadingStats from "../ReadingStats/ReadingStats";
 
 
-const ReadingFilter = () => {
-
+const ReadingFilter = ({ isStatsOpen }) => {
   return (
     <Box>
       <FilterWrapper>
@@ -30,9 +30,9 @@ const ReadingFilter = () => {
           )}
         </Formik>
       </FilterWrapper>
-      <ProgressDefault />
+      {!isStatsOpen ? <ProgressDefault /> : <ReadingStats />}
     </Box>
   );
-}
+};
 
 export default ReadingFilter;

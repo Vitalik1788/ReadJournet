@@ -12,9 +12,10 @@ import { selectReadingBook } from '../../redux/books/booksSelectors';
 import { useState } from 'react';
 import sprite from '../../assets/images/sprite.svg';
 
-const ReadingBook = () => {
+const ReadingBook = ({ StatsToogle }) => {
   const [isReading, setIsReading] = useState(false);
   const book = useSelector(selectReadingBook);
+
 
   return (
     <ReadBox>
@@ -25,11 +26,15 @@ const ReadingBook = () => {
           <BookTitle>{book.title}</BookTitle>
           <BookAuthor>{book.author}</BookAuthor>
           {isReading ? (
-            <SVGWrapper onClick={() => setIsReading(false)}>
+            <SVGWrapper onClick={() => { setIsReading(false), StatsToogle()}}>
               <use href={`${sprite}#icon-videoStop`}></use>
             </SVGWrapper>
           ) : (
-            <SVGWrapper onClick={() => setIsReading(true)}>
+            <SVGWrapper
+              onClick={() => {
+                setIsReading(true), StatsToogle();
+              }}
+            >
               <use href={`${sprite}#icon-videoStart`}></use>
             </SVGWrapper>
           )}
