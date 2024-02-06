@@ -4,21 +4,21 @@ import ReadingFilter from '../components/ReadingFilter/ReadingFilter';
 import { PageBox } from './MyReading.styled';
 
 const MyReading = () => {
-  const [isStatsOpen, setIsStatsOpen] = useState(false);
+  const [isReading, setIsReading] = useState(false);
 
   function StatsToogle() {
-    if (isStatsOpen === false) {
-      setIsStatsOpen(true);    
-    } else if (isStatsOpen === true) {
-      setIsStatsOpen(false);
+    if (isReading === false) {
+      setIsReading(true);
+    } else if (isReading === true) {
+      setIsReading(false);
     } 
   }
 
   return (
     <>
       <PageBox>
-        <ReadingFilter isStatsOpen={isStatsOpen} />
-        <ReadingBook StatsToogle={StatsToogle} />
+        <ReadingFilter StatsToogle={StatsToogle} isReading={isReading} />
+        <ReadingBook isReading={isReading} />
       </PageBox>
     </>
   );

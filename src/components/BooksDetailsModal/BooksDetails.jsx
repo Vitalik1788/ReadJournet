@@ -17,6 +17,8 @@ import { selectError, selectUserBooks } from '../../redux/books/booksSelectors';
 import { useLayoutEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AddedBook from '../ModalAddedBook/AddedBook';
+import default_book_cover from '../../assets/images/no_book_cover.jpg';
+
 
 const BooksDetails = ({ bookForModal, isOpen, closeModal }) => {
   const [isInFavorite, setIsInFavorite] = useState(false);
@@ -73,7 +75,7 @@ const BooksDetails = ({ bookForModal, isOpen, closeModal }) => {
         >
           <CloseCross onClick={() => closeModal()} />
           <CardBox>
-            <ModalImage src={imageUrl} alt="book cover" />
+            <ModalImage src={imageUrl ? imageUrl : default_book_cover} alt="book cover" />
             <Title>{title}</Title>
             <Author>{author}</Author>
             <Pages>{totalPages} pages</Pages>

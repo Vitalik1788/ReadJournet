@@ -31,6 +31,7 @@ import { deleteUserBook, getUserBooks } from '../../redux/books/booksOperation';
 import books_mobile from '../../assets/images/book-mobile.jpg';
 import BooksDetails from '../BooksDetailsModal/BooksDetails';
 import Spinner from '../Spinner/Spinner';
+import default_book_cover from '../../assets/images/no_book_cover.jpg';
 
 const MyLibraryBooks = () => {
   const [filterOpen, setFilterOpen] = useState(false);
@@ -143,7 +144,7 @@ const MyLibraryBooks = () => {
                     return (
                       <BookItem key={book._id}>
                         <LibraryCardImg
-                          src={book.imageUrl}
+                          src={book.imageUrl ? book.imageUrl : default_book_cover}
                           alt="Book cover"
                           onClick={() => {
                             setBookForModal(book), modalOpen();

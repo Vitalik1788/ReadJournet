@@ -70,6 +70,22 @@ export const InputBox = styled.div`
   }
 `;
 
+export const ErrorMessage = styled.p`
+  margin-top: 4px;
+  padding-left: 14px;
+  font-family: 'Gilroy';
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #e90516;
+
+  @media screen and (min-width: 768px) {
+    font-size: 12px;
+    line-height: 1.17;
+  }
+`;
+
 export const InputLabel = styled.label`
   width: fit-content;
   white-space: nowrap;

@@ -3,9 +3,11 @@ import {
   addBookFromRecommend,
   addReadingBook,
   deleteUserBook,
+  endReading,
   getLibraryRecommendBook,
   getRecommendBooks,
   getUserBooks,
+  startReading,
 } from './booksOperation';
 
 const BooksSlice = createSlice({
@@ -18,6 +20,7 @@ const BooksSlice = createSlice({
     isLoading: false,
     error: null,
     readingBook: null,
+    readInfo: null,
   },
   extraReducers: (builder) =>
     builder
@@ -63,7 +66,13 @@ const BooksSlice = createSlice({
       })
       .addCase(addReadingBook.fulfilled, (state, action) => {
         state.readingBook = action.payload;
-      }),
+      })
+      .addCase(startReading.fulfilled, (state, action) => {
+        state.readInfo = action.payload;
+      })
+      .addCase(endReading.fulfilled, (state, action) => {
+        state.readInfo = action.payload;
+  })
 });
 
 export const booksReducer = BooksSlice.reducer;

@@ -94,3 +94,39 @@ export const addReadingBook = createAsyncThunk(
     }
   }
 );
+
+export const startReading = createAsyncThunk(
+  'books/startReading',
+  async (data, thunkAPI) => {
+    try {
+      const response = await axios.post('/books/reading/start', data);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const endReading = createAsyncThunk(
+  'books/endReading',
+  async (data, thunkAPI) => {
+    try {
+      const response = await axios.post('/books/reading/finish', data);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const userAddNewBook = createAsyncThunk(
+  'books/userAddNewBook',
+  async (data, thunkAPI) => {
+    try {
+      const response = await axios.post('/books/add', data);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
+  }
+);

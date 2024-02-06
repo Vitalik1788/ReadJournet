@@ -6,6 +6,7 @@ import {
   CardImg,
   CardItem,
   CardList,
+  ErrorMessage,
   FilterBox,
   FilterTitle,
   FiltersBtn,
@@ -20,17 +21,15 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import * as Yup from 'yup';
-import { getLibraryRecommendBook } from '../../redux/books/booksOperation';
+import { getLibraryRecommendBook, userAddNewBook } from '../../redux/books/booksOperation';
 import { selectLibraryRecommend } from '../../redux/books/booksSelectors';
 import sprite from '../../assets/images/sprite.svg';
 import { useNavigate } from 'react-router-dom';
 
 let validationSchema = Yup.object({
-  bookTitle: Yup.string('Enter book title')
-    .trim()
-    .required('Book title is required'),
+  title: Yup.string('Enter book title').trim().required('Book title is required'),
   author: Yup.string('Enter book author').trim().required('Author is required'),
-  pages: Yup.number('Enter the number of pages in the book').required('Password is required'),
+  totalPages: Yup.number('Enter the number of pages in the book').required('Pages is required'),
 });
 
 const LibraryDashboard = () => {
@@ -42,30 +41,39 @@ const LibraryDashboard = () => {
     dispatch(getLibraryRecommendBook());
   }, [dispatch]);
 
+  function handleSubmit(values) {
+    if (values) {
+      dispatch(userAddNewBook(values));
+    }
+  }
+
   return (
     <Box>
       <FilterBox>
         <FilterTitle>Filters:</FilterTitle>
         <Formik
           initialValues={{
-            bookTitle: '',
+            title: '',
             author: '',
-            pages: '',
+            totalPages: '',
           }}
           validationSchema={validationSchema}
+          onSubmit={(values) => handleSubmit(values)}
         >
-          {({ values }) => (
+          {({ values, errors }) => (
             <Form>
               <InputBox>
                 <InputLabel>Book title:</InputLabel>
                 <InputField
-                  id="bookTitle"
+                  id="title"
                   type="text"
-                  name="bookTitle"
-                  value={values.bookTitle}
+                  name="title"
+                  value={values.title}
                   placeholder="Enter text"
+                  autoComplete="off"
                 />
               </InputBox>
+              {errors.title && <ErrorMessage>{errors.title}</ErrorMessage>}
               <InputBox>
                 <InputLabel>The author:</InputLabel>
                 <InputField
@@ -74,18 +82,24 @@ const LibraryDashboard = () => {
                   name="author"
                   value={values.author}
                   placeholder="Enter text"
+                  autoComplete="off"
                 />
               </InputBox>
+              {errors.author && <ErrorMessage>{errors.author}</ErrorMessage>}
               <InputBox>
                 <InputLabel>Number of pages:</InputLabel>
                 <InputField
-                  id="pages"
+                  id="totalPages"
                   type="number"
-                  name="pages"
-                  value={values.pages}
+                  name="totalPages"
+                  value={values.totalPages}
                   placeholder="0"
+                  autoComplete="off"
                 />
               </InputBox>
+              {errors.totalPages && (
+                <ErrorMessage>{errors.totalPages}</ErrorMessage>
+              )}
               <FiltersBtn type="submit">Add book</FiltersBtn>
             </Form>
           )}

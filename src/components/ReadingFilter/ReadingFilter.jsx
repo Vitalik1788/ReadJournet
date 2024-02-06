@@ -1,10 +1,36 @@
-import { Form, Formik } from "formik";
-import { Box, FilterBtn, FilterTitle, FilterWrapper, StyledField, StyledForm, StyledLabel } from "./ReadingFilter.styled";
-import ProgressDefault from "../ReadProgressDefault/ReadProgressDefault";
-import ReadingStats from "../ReadingStats/ReadingStats";
+import { Form, Formik } from 'formik';
+import {
+  Box,
+  FilterBtn,
+  FilterTitle,
+  FilterWrapper,
+  StyledField,
+  StyledForm,
+  StyledLabel,
+} from './ReadingFilter.styled';
+import ProgressDefault from '../ReadProgressDefault/ReadProgressDefault';
+import ReadingStats from '../ReadingStats/ReadingStats';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectReadingBook } from '../../redux/books/booksSelectors';
+import { endReading, startReading } from '../../redux/books/booksOperation';
 
+const ReadingFilter = ({ StatsToogle, isReading }) => {
+  const dispatch = useDispatch();
+  const book = useSelector(selectReadingBook);
 
-const ReadingFilter = ({ isStatsOpen }) => {
+  console.log(book);
+
+  function handleSubmit(values) {
+    if (values) {
+      StatsToogle();
+      const data = {
+        id: book._id,
+        page: values.page,
+      };
+      dispatch(startReading(data));
+    }
+  }
+
   return (
     <Box>
       <FilterWrapper>
@@ -13,6 +39,7 @@ const ReadingFilter = ({ isStatsOpen }) => {
           initialValues={{
             page: 0,
           }}
+          onSubmit={(values) => handleSubmit(values)}
         >
           {({ values }) => (
             <Form>
@@ -25,12 +52,23 @@ const ReadingFilter = ({ isStatsOpen }) => {
                   values={values.page}
                 />
               </StyledForm>
-              <FilterBtn type="submit">To start</FilterBtn>
+              {!isReading ? (
+                <FilterBtn type="submit">To start</FilterBtn>
+              ) : (
+                <FilterBtn
+                  type="submit"
+                  onClick={() => {
+                    dispatch(endReading({ id: book._id, page: values.page }));
+                  }}
+                >
+                  To stop
+                </FilterBtn>
+              )}
             </Form>
           )}
         </Formik>
       </FilterWrapper>
-      {!isStatsOpen ? <ProgressDefault /> : <ReadingStats />}
+      {book.status === 'unread' ? <ProgressDefault /> : <ReadingStats />}
     </Box>
   );
 };

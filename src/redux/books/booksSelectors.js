@@ -12,3 +12,5 @@ export const selectIsLoading = state => state.books.isLoading;
 export const selectError = state => state.books.error;
 
 export const selectReadingBook = state => state.books.readingBook;
+
+export const selectReadInfo = state => state.books.readInfo;
