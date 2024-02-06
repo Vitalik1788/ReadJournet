@@ -70,13 +70,21 @@ const BooksSlice = createSlice({
       })
       .addCase(startReading.fulfilled, (state, action) => {
         state.readInfo = action.payload;
+        state.error = null;
+      })
+      .addCase(startReading.rejected, (state, action) => {
+        state.error = action.payload;
+        state.error = null;
       })
       .addCase(endReading.fulfilled, (state, action) => {
         state.readInfo = action.payload;
       })
+      .addCase(endReading.rejected, (state, action) => {
+        state.error = action.payload;
+      })
       .addCase(userAddNewBook.fulfilled, (state, action) => {
         state.userBooks.push(action.payload);
-  })
+      }),
 });
 
 export const booksReducer = BooksSlice.reducer;

@@ -11,21 +11,29 @@ import {
 import ProgressDefault from '../ReadProgressDefault/ReadProgressDefault';
 import ReadingStats from '../ReadingStats/ReadingStats';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectReadingBook } from '../../redux/books/booksSelectors';
+import {
+  selectError,
+  selectReadingBook,
+} from '../../redux/books/booksSelectors';
 import { endReading, startReading } from '../../redux/books/booksOperation';
+import { toast } from 'react-toastify';
 
 const ReadingFilter = ({ StatsToogle, isReading }) => {
   const dispatch = useDispatch();
   const book = useSelector(selectReadingBook);
+  const error = useSelector(selectError);
 
   function handleSubmit(values) {
-    if (values) {
+    if (error) {
+      return toast.error(error);
+    }
+
+    if (!isReading) {
       StatsToogle();
-      const data = {
-        id: book._id,
-        page: values.page,
-      };
-      dispatch(startReading(data));
+      dispatch(startReading({ id: book._id, page: values.page }));
+    } else if (isReading) {
+      StatsToogle();
+      dispatch(endReading({ id: book._id, page: values.page }));
     }
   }
 
@@ -53,20 +61,15 @@ const ReadingFilter = ({ StatsToogle, isReading }) => {
               {!isReading ? (
                 <FilterBtn type="submit">To start</FilterBtn>
               ) : (
-                <FilterBtn
-                  type="submit"
-                  onClick={() => {
-                    dispatch(endReading({ id: book._id, page: values.page }));
-                  }}
-                >
-                  To stop
-                </FilterBtn>
+                <FilterBtn type="submit">To stop</FilterBtn>
               )}
             </Form>
           )}
         </Formik>
       </FilterWrapper>
-      {book.status === 'unread' ? <ProgressDefault /> : <ReadingStats />}
+      <div>
+        {book?.status === 'unread' ? <ProgressDefault /> : <ReadingStats />}
+      </div>
     </Box>
   );
 };

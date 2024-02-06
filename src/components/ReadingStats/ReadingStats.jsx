@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import sprite from '../../assets/images/sprite.svg';
 import {
   InfoBox,
@@ -10,11 +11,16 @@ import {
   Title,
   Wrapper,
 } from './ReadingStats.styled';
-import { CircularProgressbar} from 'react-circular-progressbar';
+import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import { selectReadingBook } from '../../redux/books/booksSelectors';
 
 const ReadingStats = () => {
-  const value = 19.48;
+  const bookStatus = useSelector(selectReadingBook);
+  const lastRead = bookStatus.progress.slice(-1);
+  const userProgress = (lastRead[0].finishPage / bookStatus.totalPages) * 100;
+
+  const value = userProgress.toFixed(2);
   return (
     <>
       <div
@@ -52,14 +58,14 @@ const ReadingStats = () => {
               path: {
                 stroke: '#30B94D',
               },
-            }}            
+            }}
           />
         </ProcentageBox>
         <InfoBox>
           <LittleGreenBox></LittleGreenBox>
           <ul>
-            <ProcentRead>19.48%</ProcentRead>
-            <ReadPage>171 pages read</ReadPage>
+            <ProcentRead>{value}%</ProcentRead>
+            <ReadPage>{lastRead[0].finishPage} pages read</ReadPage>
           </ul>
         </InfoBox>
       </Wrapper>
