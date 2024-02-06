@@ -32,6 +32,8 @@ import books_mobile from '../../assets/images/book-mobile.jpg';
 import BooksDetails from '../BooksDetailsModal/BooksDetails';
 import Spinner from '../Spinner/Spinner';
 import default_book_cover from '../../assets/images/no_book_cover.jpg';
+import { setReadFilter } from '../../redux/filters/filtersRuducer';
+import { selectVisibleRead } from '../../redux/filters/filtersSelectors';
 
 const MyLibraryBooks = () => {
   const [filterOpen, setFilterOpen] = useState(false);
@@ -40,11 +42,13 @@ const MyLibraryBooks = () => {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   const books = useSelector(selectUserBooks);
+  const filteredBooks = useSelector(selectVisibleRead);
   const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
     dispatch(getUserBooks());
-  }, [dispatch]);
+    dispatch(setReadFilter(filterLabel));
+  }, [dispatch, filterLabel]);
 
   function toggleFilter() {
     if (filterOpen === false) {
@@ -78,31 +82,31 @@ const MyLibraryBooks = () => {
               <FilterList>
                 <FilterItem
                   style={
-                    filterLabel === 'Unread'
+                    filterLabel === 'unread'
                       ? { color: '#F9F9F9' }
                       : { color: '#686868' }
                   }
-                  onClick={() => setFilterLabel('Unread')}
+                  onClick={() => setFilterLabel('unread')}
                 >
                   Unread
                 </FilterItem>
                 <FilterItem
                   style={
-                    filterLabel === 'In progress'
+                    filterLabel === 'in-progress'
                       ? { color: '#F9F9F9' }
                       : { color: '#686868' }
                   }
-                  onClick={() => setFilterLabel('In progress')}
+                  onClick={() => setFilterLabel('in-progress')}
                 >
                   In progress
                 </FilterItem>
                 <FilterItem
                   style={
-                    filterLabel === 'Done'
+                    filterLabel === 'done'
                       ? { color: '#F9F9F9' }
                       : { color: '#686868' }
                   }
-                  onClick={() => setFilterLabel('Done')}
+                  onClick={() => setFilterLabel('done')}
                 >
                   Done
                 </FilterItem>
@@ -139,12 +143,14 @@ const MyLibraryBooks = () => {
               <Spinner />
             ) : (
               <BooksList>
-                {books &&
-                  books.map((book) => {
+                {filteredBooks &&
+                  filteredBooks.map((book) => {
                     return (
                       <BookItem key={book._id}>
                         <LibraryCardImg
-                          src={book.imageUrl ? book.imageUrl : default_book_cover}
+                          src={
+                            book.imageUrl ? book.imageUrl : default_book_cover
+                          }
                           alt="Book cover"
                           onClick={() => {
                             setBookForModal(book), modalOpen();

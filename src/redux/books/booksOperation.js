@@ -124,8 +124,10 @@ export const userAddNewBook = createAsyncThunk(
   async (data, thunkAPI) => {
     try {
       const response = await axios.post('/books/add', data);
+      toast.success('The book has been successfully added to the library', {theme: "dark"});
       return response.data;
     } catch (error) {
+      toast.error(error.response.data.message);
       return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }

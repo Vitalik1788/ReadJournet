@@ -18,8 +18,6 @@ const ReadingFilter = ({ StatsToogle, isReading }) => {
   const dispatch = useDispatch();
   const book = useSelector(selectReadingBook);
 
-  console.log(book);
-
   function handleSubmit(values) {
     if (values) {
       StatsToogle();

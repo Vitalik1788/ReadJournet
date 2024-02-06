@@ -7,13 +7,17 @@ const filtersReducer = createSlice({
       bookTitle: '',
       author: '',
     },
+    readFilter: '',
   },
   reducers: {
     filterRecommend(state, action) {
       state.recommendFilter = action.payload;
+    },
+    setReadFilter(state, action) {
+      state.readFilter = action.payload;
     }
   }
 });
 
-export const { filterRecommend } = filtersReducer.actions;
+export const { filterRecommend, setReadFilter } = filtersReducer.actions;
 export default filtersReducer.reducer;

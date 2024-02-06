@@ -8,6 +8,7 @@ import {
   getRecommendBooks,
   getUserBooks,
   startReading,
+  userAddNewBook,
 } from './booksOperation';
 
 const BooksSlice = createSlice({
@@ -72,6 +73,9 @@ const BooksSlice = createSlice({
       })
       .addCase(endReading.fulfilled, (state, action) => {
         state.readInfo = action.payload;
+      })
+      .addCase(userAddNewBook.fulfilled, (state, action) => {
+        state.userBooks.push(action.payload);
   })
 });
 

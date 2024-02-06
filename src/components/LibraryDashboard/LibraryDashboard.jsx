@@ -21,15 +21,22 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import * as Yup from 'yup';
-import { getLibraryRecommendBook, userAddNewBook } from '../../redux/books/booksOperation';
+import {
+  getLibraryRecommendBook,
+  userAddNewBook,
+} from '../../redux/books/booksOperation';
 import { selectLibraryRecommend } from '../../redux/books/booksSelectors';
 import sprite from '../../assets/images/sprite.svg';
 import { useNavigate } from 'react-router-dom';
 
 let validationSchema = Yup.object({
-  title: Yup.string('Enter book title').trim().required('Book title is required'),
+  title: Yup.string('Enter book title')
+    .trim()
+    .required('Book title is required'),
   author: Yup.string('Enter book author').trim().required('Author is required'),
-  totalPages: Yup.number('Enter the number of pages in the book').required('Pages is required'),
+  totalPages: Yup.number('Enter the number of pages in the book').required(
+    'Pages is required'
+  ),
 });
 
 const LibraryDashboard = () => {
@@ -58,7 +65,9 @@ const LibraryDashboard = () => {
             totalPages: '',
           }}
           validationSchema={validationSchema}
-          onSubmit={(values) => handleSubmit(values)}
+          onSubmit={(values, actions) => {
+            handleSubmit(values), actions.resetForm();
+          }}
         >
           {({ values, errors }) => (
             <Form>
