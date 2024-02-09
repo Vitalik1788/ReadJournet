@@ -68,7 +68,7 @@ const ReadingFilter = ({ StatsToogle, isReading }) => {
         </Formik>
       </FilterWrapper>
       <div>
-        {book?.status === 'unread' ? <ProgressDefault /> : <ReadingStats />}
+        {book?.status === 'unread' ? <ProgressDefault /> : <ReadingStats book={book} />}
       </div>
     </Box>
   );

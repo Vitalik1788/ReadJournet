@@ -1,4 +1,3 @@
-import { useSelector } from 'react-redux';
 import sprite from '../../assets/images/sprite.svg';
 import {
   InfoBox,
@@ -13,14 +12,11 @@ import {
 } from './ReadingStats.styled';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import { selectReadingBook } from '../../redux/books/booksSelectors';
 
-const ReadingStats = () => {
-  const bookStatus = useSelector(selectReadingBook);
-  const lastRead = bookStatus?.progress.slice(-1);
-  const userProgress = (lastRead[0].finishPage / bookStatus.totalPages) * 100;
+const ReadingStats = ({book}) => {
+  const lastRead = book?.progress.slice(-1);
+  const userProgress = (lastRead[0].finishPage / book.totalPages) * 100;
   const totalPageRead = lastRead[0].finishPage;
-
   const value = userProgress.toFixed(2);
 
   return (
