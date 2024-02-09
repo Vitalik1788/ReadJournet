@@ -17,6 +17,7 @@ const ReadingStats = ({book}) => {
   const lastRead = book?.progress.slice(-1);
   const userProgress = (lastRead[0].finishPage / book.totalPages) * 100;
   const totalPageRead = lastRead[0].finishPage;
+
   const value = userProgress.toFixed(2);
 
   return (

@@ -67,6 +67,7 @@ const BooksSlice = createSlice({
       })
       .addCase(addReadingBook.fulfilled, (state, action) => {
         state.readingBook = action.payload;
+        state.error = null;
         state.isLoading = false;
       })
       .addCase(addReadingBook.pending, (state) => {
@@ -79,16 +80,26 @@ const BooksSlice = createSlice({
       .addCase(startReading.fulfilled, (state, action) => {
         state.readInfo = action.payload;
         state.error = null;
+        state.isLoading = false;
+      })
+      .addCase(startReading.pending, (state) => {
+        state.isLoading = true;
       })
       .addCase(startReading.rejected, (state, action) => {
         state.error = action.payload;
-        state.error = null;
+        state.isLoading = false;
       })
       .addCase(endReading.fulfilled, (state, action) => {
         state.readInfo = action.payload;
+        state.error = null;
+        state.isLoading = false;
+      })
+      .addCase(endReading.pending, (state) => {
+        state.isLoading = true;
       })
       .addCase(endReading.rejected, (state, action) => {
         state.error = action.payload;
+        state.isLoading = false;
       })
       .addCase(userAddNewBook.fulfilled, (state, action) => {
         state.userBooks.push(action.payload);
