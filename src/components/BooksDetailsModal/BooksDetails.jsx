@@ -14,7 +14,7 @@ import {
   addReadingBook,
 } from '../../redux/books/booksOperation';
 import { selectError, selectUserBooks } from '../../redux/books/booksSelectors';
-import { useLayoutEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AddedBook from '../ModalAddedBook/AddedBook';
 import default_book_cover from '../../assets/images/no_book_cover.jpg';
@@ -29,7 +29,7 @@ const BooksDetails = ({ bookForModal, isOpen, closeModal }) => {
   const addedError = useSelector(selectError);
   const { imageUrl, title, author, totalPages, _id } = bookForModal;
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (bookForModal && books.includes(bookForModal)) {
       setIsInFavorite(true);
     }

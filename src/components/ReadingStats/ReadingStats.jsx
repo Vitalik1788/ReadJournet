@@ -17,10 +17,12 @@ import { selectReadingBook } from '../../redux/books/booksSelectors';
 
 const ReadingStats = () => {
   const bookStatus = useSelector(selectReadingBook);
-  const lastRead = bookStatus.progress.slice(-1);
+  const lastRead = bookStatus?.progress.slice(-1);
   const userProgress = (lastRead[0].finishPage / bookStatus.totalPages) * 100;
+  const totalPageRead = lastRead[0].finishPage;
 
   const value = userProgress.toFixed(2);
+
   return (
     <>
       <div
@@ -43,8 +45,8 @@ const ReadingStats = () => {
       <Wrapper>
         <ProcentageBox>
           <CircularProgressbar
-            value={value}
-            text={`${value}%`}
+            value={isNaN(value) ? 0 : value}
+            text={isNaN(value) ? '0%' : `${value}%`}
             styles={{
               text: {
                 fontFamily: 'Gilroy',
@@ -64,8 +66,8 @@ const ReadingStats = () => {
         <InfoBox>
           <LittleGreenBox></LittleGreenBox>
           <ul>
-            <ProcentRead>{value}%</ProcentRead>
-            <ReadPage>{lastRead[0].finishPage} pages read</ReadPage>
+            <ProcentRead>{isNaN(value) ? 0 : value}%</ProcentRead>
+            <ReadPage>{totalPageRead ? totalPageRead : 0} pages read</ReadPage>
           </ul>
         </InfoBox>
       </Wrapper>
